@@ -3,12 +3,32 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
+import { type Project } from '../../types';
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
 
-const proyectos = (await import('../../data/proyectos.json')).default;
-const proyectosData = proyectos[lang];
+const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
+  headers: {
+    'Authorization': `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+    'Accept': 'application/vnd.github.v3+json'
+  }
+});
+const proyectosRaw = await proyectos.json();
+
+// Mapear solo los campos que necesitas de la respuesta de GitHub
+// Filtrar solo proyectos que NO son forked
+const proyectosData: Project[] = proyectosRaw
+  .filter((repo: any) => !repo.fork)
+  .map((repo: any) => ({
+    id: repo.id,
+    fullname: repo.name,
+    description: repo.description || 'No description',
+    html_url: repo.html_url,
+    private: repo.private,
+    language: repo.language ? [repo.language] : ['Unknown'],
+    bannerImage: `https://raw.githubusercontent.com/${repo.full_name}/main/banner.png`
+  }));
 
 export async function getStaticPaths() {
 	return [

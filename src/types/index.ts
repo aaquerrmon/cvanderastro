@@ -23,13 +23,12 @@ export interface Education {
 
 export interface Project {
   id: number;
-  title: string;
+  fullname: string;
   description: string;
-  placement: string;
-  startDate: string;
-  endDate: string;
-  technologies: string[];
-  link: string;
+  html_url: string;
+  private: boolean;
+  language: string[];
+  bannerImage?: string;
 }
 
 export interface LinkedInPost {

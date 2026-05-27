@@ -16,6 +16,7 @@ export default defineConfig({
   env: {
     schema: {
       PUBLIC_URL: envField.string({context: "client", access: "public", default: "http://localhost:4321"}),
+      GITHUB_TOKEN: envField.string({context: "server", access: "secret"})
     }
   },
   vite: {
