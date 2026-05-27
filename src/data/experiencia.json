@@ -1,0 +1,94 @@
+{
+  "es": [
+    {
+      "id": 1,
+      "company": "Universidad Politécnica de Valencia",
+      "position": "Ingeniero de IA",
+      "type": "Tiempo completo",
+      "startDate": "2024-10-31",
+      "endDate": null,
+      "location": "Valencia, España",
+      "description": "Desarrollo end-to-end de sistemas RAG desde cero utilizando LLMs locales y bases de datos vectoriales. Deployment y orquestación de LLMs locales vía vLLM. Experiencia con modelos de embedding y pipelines de re-ranking. Desarrollo de backend para aplicaciones de IA. Deployment de sistemas de IA en producción. Gestión de infraestructura distribuida (entornos de computación a escala universitaria). Automatización de workflows usando Apache Airflow. Uso de Docker y Git para control de versiones y containerización. Fine-tuning de grandes modelos de lenguaje (LLMs). Experiencia con prácticas MLOps y gestión del ciclo de vida.",
+      "technologies": ["Python", "LangChain", "vLLM", "PostgreSQL", "Milvus", "Docker", "Apache Airflow", "Git"]
+    },
+    {
+      "id": 2,
+      "company": "Universidad Politécnica de Valencia",
+      "position": "Prácticas - Ingeniero de IA",
+      "type": "Prácticas",
+      "startDate": "2024-03-01",
+      "endDate": "2024-09-01",
+      "location": "Valencia, España",
+      "description": "Generación de embeddings para lenguaje de signos. Análisis de vídeo con técnicas de visión por computadora. Análisis y visualización de datos.",
+      "technologies": ["Python", "TensorFlow", "OpenCV", "NumPy"]
+    },
+    {
+      "id": 3,
+      "company": "Hospital Universitario de Navarra",
+      "position": "Prácticas - Ciencia de Datos",
+      "type": "Prácticas",
+      "startDate": "2022-09-01",
+      "endDate": "2022-12-01",
+      "location": "Pamplona, España",
+      "description": "Análisis de datos en entorno sanitario. Creación de modelos de clasificación y regresión. Análisis NLP. Recopilación y modelado de datos. Visualización de datos con Tableau.",
+      "technologies": ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"]
+    },
+    {
+      "id": 4,
+      "company": "Stats Perform",
+      "position": "Data Collector",
+      "type": "Tiempo completo",
+      "startDate": "2026-01-01",
+      "endDate": null,
+      "location": "Remoto",
+      "description": "Recopilación y anotación de datos para analítica deportiva. Comunicación en inglés con equipos internacionales.",
+      "technologies": ["Data Collection", "Annotation", "English"]
+    }
+  ],
+  "en": [
+    {
+      "id": 1,
+      "company": "Universitat Politècnica de València",
+      "position": "AI Engineer",
+      "type": "Full-time",
+      "startDate": "2024-10-31",
+      "endDate": null,
+      "location": "Valencia, Spain",
+      "description": "End-to-end RAG system development from scratch using local LLMs and vector databases. Deployment and orchestration of local LLMs via vLLM. Experience with embedding models and re-ranking pipelines. Backend development for AI applications. Production-grade AI system deployment. Distributed systems and infrastructure management (university-scale compute environments). Workflow automation using Apache Airflow. Docker and Git for version control and containerization. Fine-tuning of large language models (LLMs). Experience with MLOps practices and lifecycle management.",
+      "technologies": ["Python", "LangChain", "vLLM", "PostgreSQL", "Milvus", "Docker", "Apache Airflow", "Git"]
+    },
+    {
+      "id": 2,
+      "company": "Universitat Politècnica de València",
+      "position": "AI Engineering Intern",
+      "type": "Internship",
+      "startDate": "2024-03-01",
+      "endDate": "2024-09-01",
+      "location": "Valencia, Spain",
+      "description": "Generation of embeddings for sign language. Video analysis with computer vision techniques. Data analysis and visualization.",
+      "technologies": ["Python", "TensorFlow", "OpenCV", "NumPy"]
+    },
+    {
+      "id": 3,
+      "company": "Hospital Universitario de Navarra",
+      "position": "Data Science Intern",
+      "type": "Internship",
+      "startDate": "2022-09-01",
+      "endDate": "2022-12-01",
+      "location": "Pamplona, Spain",
+      "description": "Data analysis in a healthcare environment. Creation of classification and regression models. NLP analysis. Data collection and modeling. Data visualization with Tableau.",
+      "technologies": ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"]
+    },
+    {
+      "id": 4,
+      "company": "Stats Perform",
+      "position": "Data Collector",
+      "type": "Full-time",
+      "startDate": "2026-01-01",
+      "endDate": null,
+      "location": "Remote",
+      "description": "Data collection and annotation for sports analytics. English language skills for communication with international teams.",
+      "technologies": ["Data Collection", "Annotation", "English"]
+    }
+  ]
+}

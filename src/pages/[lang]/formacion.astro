@@ -1,0 +1,42 @@
+
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import EducationCard from '../../components/EducationCard.astro';
+import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
+
+const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
+const t = useTranslation(lang);
+
+const formacion = (await import('../../data/formacion.json')).default;
+const formacionData = formacion[lang];
+
+export async function getStaticPaths() {
+	return [
+		{ params: { lang: 'es' } },
+		{ params: { lang: 'en' } }
+	];
+}
+---
+
+<MainLayout lang={lang} title={`${t('nav.education')} - Ander Aquerreta`}>
+	<section class="py-20 px-4">
+		<div class="max-w-5xl mx-auto">
+			<div class="mb-12">
+				<h1 class="text-5xl font-bold mb-4">{t('education.title')}</h1>
+				<p class="text-lg text-slate-600 dark:text-slate-400">{t('education.description')}</p>
+			</div>
+
+			{formacionData.length > 0 ? (
+				<div class="space-y-6">
+					{formacionData.map((edu) => (
+						<EducationCard education={edu} lang={lang} />
+					))}
+				</div>
+			) : (
+				<div class="text-center py-12">
+					<p class="text-slate-600 dark:text-slate-400">{t('education.noEducation')}</p>
+				</div>
+			)}
+		</div>
+	</section>
+</MainLayout>

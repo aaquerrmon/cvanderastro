@@ -1,0 +1,43 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { type Language } from '../i18n/config';
+import '../styles/global.css';
+
+interface Props {
+  lang: Language;
+  title?: string;
+}
+
+const { lang, title = 'Ander Aquerreta' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ander Aquerreta - AI Engineer" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      // Initialize theme immediately to prevent flash
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300">
+    <Header lang={lang} />
+    <main class="pt-24">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

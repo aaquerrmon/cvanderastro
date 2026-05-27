@@ -1,0 +1,60 @@
+{
+  "es": [
+    {
+      "id": 1,
+      "date": "2024-10",
+      "content": "Implementé un sistema RAG completo con vLLM y bases de datos vectoriales. El sistema procesa documentos complejos y genera respuestas precisas usando LLMs locales.",
+      "likes": 245,
+      "comments": 18,
+      "shares": 32,
+      "image": "https://via.placeholder.com/400x250?text=RAG+System"
+    },
+    {
+      "id": 2,
+      "date": "2024-08",
+      "content": "Compartiendo mi experiencia automatizando pipelines de ML con Apache Airflow. Reducimos el tiempo de ejecución en un 60% y mejoramos la confiabilidad.",
+      "likes": 189,
+      "comments": 14,
+      "shares": 22,
+      "image": "https://via.placeholder.com/400x250?text=Apache+Airflow"
+    },
+    {
+      "id": 3,
+      "date": "2024-06",
+      "content": "Fine-tuning de LLMs para tareas específicas de dominio. Exploro técnicas como LoRA y QLoRA para optimizar modelos con recursos limitados.",
+      "likes": 312,
+      "comments": 28,
+      "shares": 45,
+      "image": "https://via.placeholder.com/400x250?text=LLM+Fine-tuning"
+    }
+  ],
+  "en": [
+    {
+      "id": 1,
+      "date": "2024-10",
+      "content": "I implemented a complete RAG system with vLLM and vector databases. The system processes complex documents and generates accurate responses using local LLMs.",
+      "likes": 245,
+      "comments": 18,
+      "shares": 32,
+      "image": "https://via.placeholder.com/400x250?text=RAG+System"
+    },
+    {
+      "id": 2,
+      "date": "2024-08",
+      "content": "Sharing my experience automating ML pipelines with Apache Airflow. We reduced execution time by 60% and improved reliability.",
+      "likes": 189,
+      "comments": 14,
+      "shares": 22,
+      "image": "https://via.placeholder.com/400x250?text=Apache+Airflow"
+    },
+    {
+      "id": 3,
+      "date": "2024-06",
+      "content": "Fine-tuning LLMs for domain-specific tasks. I explore techniques like LoRA and QLoRA to optimize models with limited resources.",
+      "likes": 312,
+      "comments": 28,
+      "shares": 45,
+      "image": "https://via.placeholder.com/400x250?text=LLM+Fine-tuning"
+    }
+  ]
+}

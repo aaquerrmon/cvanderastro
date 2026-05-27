@@ -1,0 +1,130 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import LinkedInPostCard from '../../components/LinkedInPostCard.astro';
+import { useTranslation, type Language } from '../../i18n/config';
+
+const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
+const t = useTranslation(lang);
+
+const cv = (await import('../../data/cv.json')).default;
+const experiencia = (await import('../../data/experiencia.json')).default;
+const linkedinPosts = (await import('../../data/linkedin-posts.json')).default;
+
+const cvData = cv[lang];
+const experienciaData = experiencia[lang];
+const postsData = linkedinPosts[lang];
+
+export async function getStaticPaths() {
+	return [
+		{ params: { lang: 'es' } },
+		{ params: { lang: 'en' } }
+	];
+}
+---
+
+<MainLayout lang={lang} title={`${cvData.name} - ${cvData.title}`}>
+	<!-- Hero Section -->
+	<section class="min-h-screen flex items-center justify-center px-4">
+		<div class="max-w-5xl mx-auto text-center">
+			<div class="mb-8 flex justify-center">
+				<div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-6xl font-bold">
+					AA
+				</div>
+			</div>
+      
+			<h1 class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+				{t('home.hero.title')}
+			</h1>
+      
+			<p class="text-2xl md:text-3xl text-slate-600 dark:text-slate-400 mb-6">
+				{t('home.hero.subtitle')}
+			</p>
+      
+		<div class="flex gap-4 justify-center">
+			<a href={`/${lang}/experiencia`} class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+				{t('nav.experience')}
+			</a>
+			<a href={`/${lang}/contacto`} class="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300">
+				{t('contact.title')}
+			</a>
+		</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section class="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+		<div class="max-w-5xl mx-auto">
+			<h2 class="text-4xl font-bold mb-8 text-center">{t('home.summary.title')}</h2>
+			<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg">
+				<p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+					{t('home.summary.content')}
+				</p>
+        
+				<div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+					{cvData.skills.slice(0, 8).map((skill) => (
+						<div class="text-center p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
+							<span class="text-slate-700 dark:text-slate-300 font-medium">{skill}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured Experience -->
+	<section class="py-20 px-4">
+		<div class="max-w-5xl mx-auto">
+			<h2 class="text-4xl font-bold mb-12 text-center">{t('home.experience.title')}</h2>
+			<div class="space-y-6">
+				{experienciaData.slice(0, 2).map((exp) => (
+					<ExperienceCard experience={exp} lang={lang} />
+				))}
+			</div>
+			<div class="text-center mt-8">
+				<a href={`/${lang}/experiencia`} class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+					{lang === 'es' ? 'Ver todas las experiencias →' : 'View all experience →'}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- LinkedIn Posts -->
+	<section class="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+		<div class="max-w-5xl mx-auto">
+			<h2 class="text-4xl font-bold mb-12 text-center">{t('home.posts.title')}</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				{postsData.slice(0, 3).map((post) => (
+					<LinkedInPostCard post={post} />
+				))}
+			</div>
+			<div class="text-center mt-8">
+				<a href="https://www.linkedin.com/in/ander-aquerreta-montoro/" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+					{lang === 'es' ? 'Ver más en LinkedIn →' : 'View more on LinkedIn →'}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact CTA -->
+	<section class="py-20 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<h2 class="text-4xl font-bold mb-6">{t('home.contact.title')}</h2>
+			<p class="text-lg text-slate-600 dark:text-slate-400 mb-8">
+				{t('home.contact.description')}
+			</p>
+			<a href={`/${lang}/contacto`} class="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+				{t('home.contact.button')}
+			</a>
+		</div>
+	</section>
+</MainLayout>
+
+<script>
+	// Get language from localStorage
+	const savedLang = localStorage.getItem('language') || 'es';
+	if (savedLang && savedLang !== 'es') {
+		// If not Spanish, you can handle language switching here
+		// For now, we default to Spanish for the initial page
+	}
+</script>

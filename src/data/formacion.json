@@ -1,0 +1,62 @@
+{
+  "es": [
+    {
+      "id": 1,
+      "degree": "Máster Universitario",
+      "field": "Inteligencia Artificial, Reconocimiento de Formas e Imagen Digital",
+      "institution": "Universidad Politécnica de Valencia",
+      "startDate": "2023-09-01",
+      "endDate": "2024-06-01",
+      "description": "Graduado con honores. Tesis sobre traducción del lenguaje de signos usando deep learning.",
+      "highlights": [
+        "Graduado con honores",
+        "Tesis sobre traducción del lenguaje de signos con deep learning",
+        "Especialización en visión por computador"
+      ]
+    },
+    {
+      "id": 2,
+      "degree": "Grado",
+      "field": "Ciencia de Datos",
+      "institution": "Universidad Pública de Navarra",
+      "startDate": "2019-09-01",
+      "endDate": "2023-06-01",
+      "description": "Tesis sobre mejora de la eficiencia de listas de espera de hospitales usando machine learning.",
+      "highlights": [
+        "Tesis sobre optimización de listas de espera de hospitales",
+        "Enfoque en machine learning y optimización",
+        "Aplicación en entorno sanitario"
+      ]
+    }
+  ],
+  "en": [
+    {
+      "id": 1,
+      "degree": "Master's Degree",
+      "field": "Artificial Intelligence, Shape Recognition and Digital Image",
+      "institution": "Universitat Politècnica de València",
+      "startDate": "2023-09-01",
+      "endDate": "2024-06-01",
+      "description": "Graduate with honours. Thesis on sign language translation using deep learning.",
+      "highlights": [
+        "Graduate with honours",
+        "Thesis on sign language translation using deep learning",
+        "Specialization in computer vision"
+      ]
+    },
+    {
+      "id": 2,
+      "degree": "Bachelor's Degree",
+      "field": "Data Science",
+      "institution": "Universidad Pública de Navarra",
+      "startDate": "2019-09-01",
+      "endDate": "2023-06-01",
+      "description": "Thesis on improving the efficiency of hospital waiting lists using machine learning.",
+      "highlights": [
+        "Thesis on optimization of hospital waiting lists",
+        "Focus on machine learning and optimization",
+        "Application in healthcare environment"
+      ]
+    }
+  ]
+}

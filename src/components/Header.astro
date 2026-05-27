@@ -1,0 +1,80 @@
+---
+import { useTranslation, type Language } from '../i18n/config';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslation(lang);
+const prefix = `/${lang}`;
+---
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-700">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <a href={`/${lang}`} class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition">
+        Ander
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href={`/${lang}`} class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          {t('nav.home')}
+        </a>
+        <a href={`${prefix}/experiencia`} class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          {t('nav.experience')}
+        </a>
+        <a href={`${prefix}/formacion`} class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          {t('nav.education')}
+        </a>
+        <a href={`${prefix}/proyectos`} class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          {t('nav.projects')}
+        </a>
+        <a href={`${prefix}/contacto`} class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          {t('nav.contact')}
+        </a>
+      </div>
+
+        <button id="lang-toggle" class="px-3 py-1 text-sm font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <span id="lang-display">{lang === 'es' ? 'ES' : 'EN'}</span>
+        </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Esta función se ejecutará cada vez que la página cargue (inicial y navegaciones)
+  function initLang() {
+    const langToggle = document.getElementById('lang-toggle');
+
+    if (langToggle) {
+      langToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Detectamos el idioma actual mirando la URL
+        const currentLang = window.location.pathname.startsWith('/en') ? 'en' : 'es';
+        const newLang = currentLang === 'es' ? 'en' : 'es';
+        
+        localStorage.setItem('language', newLang);
+
+        // Reemplazamos el prefijo de idioma en la URL
+        let pathname = window.location.pathname;
+        if (currentLang === 'es') {
+          // Si estamos en español y vamos a inglés (/es/... → /en/...)
+          pathname = pathname.replace(/^\/es/, '/en');
+        } else {
+          // Si estamos en inglés y vamos a español (/en/... → /es/...)
+          pathname = pathname.replace(/^\/en/, '/es');
+        }
+
+        window.location.href = pathname;
+      });
+    }
+  }
+
+  // Se ejecuta en la carga inicial de la página
+  initLang();
+
+  // Se ejecuta si usas ViewTransitions / ClientRouter al navegar
+  document.addEventListener('astro:page-load', initLang);
+</script>

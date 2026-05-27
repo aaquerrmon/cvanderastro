@@ -1,0 +1,56 @@
+{
+  "es": {
+    "name": "Ander Aquerreta Montoro",
+    "title": "Ingeniero de IA",
+    "location": "Valencia, España",
+    "email": "anderaquerretamontoro@gmail.com",
+    "bio": "Desarrollador especializado en sistemas RAG, LLMs en producción, y automatización de workflows. Graduado en Inteligencia Artificial con experiencia en proyectos end-to-end de IA.",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "Java",
+      "TensorFlow",
+      "PyTorch",
+      "vLLM",
+      "LangChain",
+      "PostgreSQL",
+      "Docker",
+      "Apache Airflow",
+      "Git",
+      "Tableau"
+    ],
+    "social": {
+      "github": "https://github.com/aaquerrmon",
+      "linkedin": "https://linkedin.com/in/ander-aquerreta-montoro",
+      "email": "anderaquerretamontoro@gmail.com"
+    }
+  },
+  "en": {
+    "name": "Ander Aquerreta Montoro",
+    "title": "AI Engineer",
+    "location": "Valencia, Spain",
+    "email": "anderaquerretamontoro@gmail.com",
+    "bio": "Developer specialized in RAG systems, production LLMs, and workflow automation. Graduate in Artificial Intelligence with experience in end-to-end AI projects.",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "Java",
+      "TensorFlow",
+      "PyTorch",
+      "vLLM",
+      "LangChain",
+      "PostgreSQL",
+      "Docker",
+      "Apache Airflow",
+      "Git",
+      "Tableau"
+    ],
+    "social": {
+      "github": "https://github.com/aaquerrmon",
+      "linkedin": "https://linkedin.com/in/ander-aquerreta-montoro",
+      "email": "anderaquerretamontoro@gmail.com"
+    }
+  }
+}

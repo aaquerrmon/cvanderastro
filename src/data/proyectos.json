@@ -1,0 +1,46 @@
+{
+  "es": [
+    {
+      "id": 1,
+      "title": "Liga Enseña x Oracle",
+      "description": "Clasificación de imágenes de signos con manos usando deep learning. Análisis de sentimientos.",
+      "placement": "4º lugar",
+      "startDate": "2023-02-01",
+      "endDate": "2023-05-01",
+      "technologies": ["Python", "TensorFlow", "Deep Learning", "Image Classification"],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "Hackathon Iberdrola Bilbao 2023",
+      "description": "Desarrollo de la mejor idea para mejorar los servicios de Iberdrola de forma eficiente y sostenible usando IA.",
+      "placement": "1º lugar",
+      "startDate": "2023-10-01",
+      "endDate": "2023-10-01",
+      "technologies": ["Python", "Machine Learning", "Innovation", "Sustainability"],
+      "link": "#"
+    }
+  ],
+  "en": [
+    {
+      "id": 1,
+      "title": "Liga Enseña x Oracle",
+      "description": "Image classification of hand signs using deep learning. Sentiment analysis.",
+      "placement": "4th place",
+      "startDate": "2023-02-01",
+      "endDate": "2023-05-01",
+      "technologies": ["Python", "TensorFlow", "Deep Learning", "Image Classification"],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "Hackathon Iberdrola Bilbao 2023",
+      "description": "Making the best idea to improve Iberdrola's services efficiently and sustainably using AI.",
+      "placement": "1st place",
+      "startDate": "2023-10-01",
+      "endDate": "2023-10-01",
+      "technologies": ["Python", "Machine Learning", "Innovation", "Sustainability"],
+      "link": "#"
+    }
+  ]
+}

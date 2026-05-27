@@ -1,0 +1,62 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
+
+const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
+const t = useTranslation(lang);
+
+const cv = (await import('../../data/cv.json')).default;
+const cvData = cv[lang];
+
+export async function getStaticPaths() {
+	return [
+		{ params: { lang: 'es' } },
+		{ params: { lang: 'en' } }
+	];
+}
+---
+
+<MainLayout lang={lang} title={`${t('nav.contact')} - Ander Aquerreta`}>
+	<section class="py-20 px-4">
+		<div class="max-w-5xl mx-auto">
+			<div class="mb-12 text-center">
+				<h1 class="text-5xl font-bold mb-4">{t('contact.title')}</h1>
+				<p class="text-lg text-slate-600 dark:text-slate-400">{t('contact.description')}</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+				<div>
+					<h2 class="text-2xl font-bold mb-6">{lang === 'es' ? 'Información de Contacto' : 'Contact Information'}</h2>
+					<div class="space-y-4">
+						<div>
+							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Email' : 'Email'}</h3>
+							<a href={`mailto:${cvData.email}`} class="text-blue-600 dark:text-blue-400 hover:underline">
+								{cvData.email}
+							</a>
+						</div>
+						<div>
+							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Ubicación' : 'Location'}</h3>
+							<p class="text-slate-600 dark:text-slate-400">{cvData.location}</p>
+						</div>
+						<div>
+							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-3">{lang === 'es' ? 'Redes Sociales' : 'Social Media'}</h3>
+							<div class="flex gap-3">
+								<a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-300 dark:hover:bg-slate-600 transition">
+									GitHub
+								</a>
+								<a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-300 dark:hover:bg-slate-600 transition">
+									LinkedIn
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<ContactForm lang={lang} />
+				</div>
+			</div>
+		</div>
+	</section>
+</MainLayout>

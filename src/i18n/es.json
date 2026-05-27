@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "education": "Formación",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "es": "Español",
+    "en": "English"
+  },
+  "home": {
+    "hero": {
+      "title": "Hola, soy Ander",
+      "subtitle": "Ingeniero de IA | Especialista en RAG y LLMs",
+      "description": "Desarrollador apasionado por sistemas de IA en producción, procesamiento de lenguaje natural y automatización de workflows."
+    },
+    "summary": {
+      "title": "Sobre mí",
+      "content": "Soy Ingeniero de IA con experiencia en desarrollo end-to-end de sistemas RAG, deployment de LLMs locales y desarrollo de backends para aplicaciones de IA. Graduado en Inteligencia Artificial con especialización en reconocimiento de formas e imágenes digitales."
+    },
+    "experience": {
+      "title": "Experiencia Destacada"
+    },
+    "posts": {
+      "title": "Últimos Posts"
+    },
+    "contact": {
+      "title": "¿Hablamos?",
+      "description": "Ponte en contacto conmigo para proyectos, colaboraciones o cualquier pregunta.",
+      "button": "Contactar"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "description": "Mi trayectoria profesional en IA, desarrollo y ciencia de datos",
+    "noExperience": "No hay experiencia disponible"
+  },
+  "education": {
+    "title": "Formación",
+    "description": "Mi educación y estudios académicos",
+    "noEducation": "No hay formación disponible"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "description": "Trabajos y proyectos destacados",
+    "noProjects": "No hay proyectos disponibles",
+    "viewMore": "Ver más",
+    "technologies": "Tecnologías"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "Ponte en contacto conmigo",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito!",
+      "error": "Error al enviar el mensaje"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Ander Aquerreta. Todos los derechos reservados."
+  },
+  "common": {
+    "month": {
+      "jan": "Enero",
+      "feb": "Febrero",
+      "mar": "Marzo",
+      "apr": "Abril",
+      "may": "Mayo",
+      "jun": "Junio",
+      "jul": "Julio",
+      "aug": "Agosto",
+      "sep": "Septiembre",
+      "oct": "Octubre",
+      "nov": "Noviembre",
+      "dec": "Diciembre"
+    },
+    "present": "Actualidad"
+  }
+}

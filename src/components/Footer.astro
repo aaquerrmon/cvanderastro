@@ -1,0 +1,50 @@
+---
+import { useTranslation, type Language } from '../i18n/config';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslation(lang);
+
+const cv = (await import('../data/cv.json')).default;
+const cvData = cv[lang];
+
+const prefix = `/${lang}`;
+---
+
+<footer class="bg-slate-900 dark:bg-black text-slate-300 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Ander Aquerreta</h3>
+        <p class="text-sm">{cvData.bio}</p>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">{t('nav.home')}</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href={`/${lang}`} class="hover:text-blue-400 transition">{t('nav.home')}</a></li>
+          <li><a href={`${prefix}/experiencia`} class="hover:text-blue-400 transition">{t('nav.experience')}</a></li>
+          <li><a href={`${prefix}/formacion`} class="hover:text-blue-400 transition">{t('nav.education')}</a></li>
+          <li><a href={`${prefix}/proyectos`} class="hover:text-blue-400 transition">{t('nav.projects')}</a></li>
+          <li><a href={`${prefix}/contacto`} class="hover:text-blue-400 transition">{t('nav.contact')}</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Social</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">GitHub</a></li>
+          <li><a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">LinkedIn</a></li>
+          <li><a href={`mailto:${cvData.social.email}`} class="hover:text-blue-400 transition">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-slate-700 pt-8 text-center text-sm">
+      <p>{t('footer.copyright')}</p>
+    </div>
+  </div>
+</footer>

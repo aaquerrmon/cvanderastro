@@ -1,0 +1,75 @@
+---
+import { type Experience} from '../types';
+import { type Language } from '../i18n/config';
+
+interface Props {
+  experience: Experience;
+  lang: Language;
+}
+
+const { experience, lang } = Astro.props;
+
+const computeDuration = (startStr: string, endStr: string | null | undefined, lang: Language) => {
+  const start = new Date(startStr);
+  const end = endStr ? new Date(endStr) : new Date();
+  let totalMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  if (end.getDate() < start.getDate()) totalMonths -= 1;
+  if (totalMonths < 0) totalMonths = 0;
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  const parts: string[] = [];
+  if (lang === 'es') {
+    if (years > 0) parts.push(`${years} ${years === 1 ? 'año' : 'años'}`);
+    if (months > 0) parts.push(`${months} ${months === 1 ? 'mes' : 'meses'}`);
+    if (parts.length === 0) return 'Menos de un mes';
+    return parts.join(' ');
+  }
+
+  if (years > 0) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+  if (months > 0) parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+  if (parts.length === 0) return 'Less than a month';
+  return parts.join(' ');
+};
+
+const duration = computeDuration(experience.startDate, experience.endDate, lang);
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  const months = lang === 'es' 
+    ? ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+---
+
+<div class="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+  <div class="flex justify-between items-start mb-4">
+    <div>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white">{experience.position}</h3>
+      <p class="text-blue-600 dark:text-blue-400 font-medium">{experience.company}</p>
+    </div>
+    <span class="text-sm bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1 rounded">
+      {experience.type}
+    </span>
+  </div>
+
+  <div class="flex flex-wrap gap-2 mb-4 text-sm text-slate-600 dark:text-slate-400">
+    <span>{formatDate(experience.startDate)} - {experience.endDate ? formatDate(experience.endDate) : (lang === 'es' ? 'Actualidad' : 'Present')}</span>
+    <span>•</span>
+    <span>{duration}</span>
+    <span>•</span>
+    <span>{experience.location}</span>
+  </div>
+
+  <p class="text-slate-700 dark:text-slate-300 mb-4">{experience.description}</p>
+
+  <div class="flex flex-wrap gap-2">
+    {experience.technologies.map((tech) => (
+      <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+        {tech}
+      </span>
+    ))}
+  </div>
+</div>
