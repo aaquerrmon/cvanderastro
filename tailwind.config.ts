@@ -6,6 +6,9 @@ export default {
   darkMode: 'class', // ¡Esto está perfecto para que funcione el botón!
   theme: {
     extend: {
+      backgroundImage: {
+        my_hero: "url('/src/assets/fotoGraduacion.jpeg')",
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans], // Simplificado sin el .theme repetido
       },
@@ -15,6 +18,8 @@ export default {
         slate: defaultTheme.colors.slate,
         blue: defaultTheme.colors.blue,
         purple: defaultTheme.colors.purple,
+        'bg-light': '#f8f9fa',
+        'bg-dark': '#0f172a',
       },
     },
   },

@@ -1,6 +1,5 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import ContactForm from '../../components/ContactForm.astro';
 import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
@@ -18,43 +17,67 @@ export async function getStaticPaths() {
 ---
 
 <MainLayout lang={lang} title={`${t('nav.contact')} - Ander Aquerreta`}>
-	<section class="py-20 px-4">
-		<div class="max-w-5xl mx-auto">
-			<div class="mb-12 text-center">
-				<h1 class="text-5xl font-bold mb-4">{t('contact.title')}</h1>
-				<p class="text-lg text-slate-600 dark:text-slate-400">{t('contact.description')}</p>
+	<section class="py-20 px-4 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+		<div class="max-w-3xl mx-auto">
+			<!-- Header -->
+			<div class="mb-16 text-center">
+				<h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
+					{t('contact.title')}
+				</h1>
+				<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+					{t('contact.description')}
+				</p>
+				<div class="mt-4 h-1 w-20 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 rounded-full mx-auto"></div>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-				<div>
-					<h2 class="text-2xl font-bold mb-6">{lang === 'es' ? 'Información de Contacto' : 'Contact Information'}</h2>
-					<div class="space-y-4">
+			<!-- Contact Information -->
+			<div class="space-y-6">
+				<!-- Email -->
+				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
+					<div class="flex items-center gap-4">
+						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center text-white text-xl">
+							✉️
+						</div>
 						<div>
 							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Email' : 'Email'}</h3>
-							<a href={`mailto:${cvData.email}`} class="text-blue-600 dark:text-blue-400 hover:underline">
+							<a href={`mailto:${cvData.email}`} class="text-sky-600 dark:text-cyan-400 hover:text-sky-700 dark:hover:text-cyan-300 text-lg font-medium transition">
 								{cvData.email}
 							</a>
 						</div>
-						<div>
-							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Ubicación' : 'Location'}</h3>
-							<p class="text-slate-600 dark:text-slate-400">{cvData.location}</p>
+					</div>
+				</div>
+
+				<!-- Location -->
+				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
+					<div class="flex items-center gap-4">
+						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center text-white text-xl">
+							📍
 						</div>
 						<div>
-							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-3">{lang === 'es' ? 'Redes Sociales' : 'Social Media'}</h3>
-							<div class="flex gap-3">
-								<a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-300 dark:hover:bg-slate-600 transition">
+							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Ubicación' : 'Location'}</h3>
+							<p class="text-slate-600 dark:text-slate-400 text-lg">{cvData.location}</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Social Media -->
+				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
+					<div class="flex items-start gap-4">
+						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+							🔗
+						</div>
+						<div class="flex-grow">
+							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-4">{lang === 'es' ? 'Redes Sociales' : 'Social Media'}</h3>
+							<div class="flex gap-3 flex-wrap">
+								<a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-slate-800 dark:bg-slate-700 text-white dark:text-slate-100 rounded-lg hover:bg-slate-900 dark:hover:bg-slate-600 transition font-medium">
 									GitHub
 								</a>
-								<a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-300 dark:hover:bg-slate-600 transition">
+								<a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
 									LinkedIn
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div>
-					<ContactForm lang={lang} />
 				</div>
 			</div>
 		</div>

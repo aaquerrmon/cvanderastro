@@ -1,8 +1,7 @@
-
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
+import { useTranslation, type Language } from '../../i18n/config';
 import { type Project } from '../../types';
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
@@ -16,9 +15,17 @@ const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sor
 });
 const proyectosRaw = await proyectos.json();
 
+// 1. Safe guard: Ensure proyectosRaw is actually an array, default to empty array if not
+const rawArray = Array.isArray(proyectosRaw) ? proyectosRaw : [];
+
+// 2. Optional: Log a warning if it's not an array so you can debug the API response
+if (!Array.isArray(proyectosRaw)) {
+  console.warn("⚠️ proyectosRaw is not an array! Received:", proyectosRaw);
+}
+
 // Mapear solo los campos que necesitas de la respuesta de GitHub
 // Filtrar solo proyectos que NO son forked
-const proyectosData: Project[] = proyectosRaw
+const proyectosData: Project[] = rawArray
   .filter((repo: any) => !repo.fork)
   .map((repo: any) => ({
     id: repo.id,
