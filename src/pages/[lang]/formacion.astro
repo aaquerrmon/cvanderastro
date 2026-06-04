@@ -2,6 +2,7 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import EducationCard from '../../components/EducationCard.astro';
 import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
+export const prerender = true;
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
