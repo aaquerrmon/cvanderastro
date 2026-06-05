@@ -2,20 +2,12 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import { useTranslation, type Language } from '../../i18n/config';
-export const prerender = true;
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
 
 const experiencia = (await import('../../data/experiencia.json')).default;
 const experienciaData = experiencia[lang];
-
-export async function getStaticPaths() {
-	return [
-		{ params: { lang: 'es' } },
-		{ params: { lang: 'en' } }
-	];
-}
 ---
 
 <MainLayout lang={lang} title={`${t('nav.experience')} - Ander Aquerreta`}>

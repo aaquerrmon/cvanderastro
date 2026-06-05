@@ -7,20 +7,38 @@ import { type Project } from '../../types';
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
 
-const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
-  headers: {
-    'Authorization': `Bearer ${import.meta.env.GITHUB_TOKEN}`,
-    'Accept': 'application/vnd.github.v3+json'
+let rawArray: any[] = [];
+
+try {
+  const token = import.meta.env.GITHUB_TOKEN;
+  
+  if (!token) {
+    console.error("❌ GITHUB_TOKEN no está configurado en .env.local");
+    throw new Error("GITHUB_TOKEN no configurado");
   }
-});
-const proyectosRaw = await proyectos.json();
 
-// 1. Safe guard: Ensure proyectosRaw is actually an array, default to empty array if not
-const rawArray = Array.isArray(proyectosRaw) ? proyectosRaw : [];
+  const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Mozilla/5.0 (Compatible; Astro)'
+    }
+  });
 
-// 2. Optional: Log a warning if it's not an array so you can debug the API response
-if (!Array.isArray(proyectosRaw)) {
-  console.warn("⚠️ proyectosRaw is not an array! Received:", proyectosRaw);
+  if (!proyectos.ok) {
+    const errorText = await proyectos.text();
+    console.error("📄 Response body:", errorText);
+    throw new Error(`GitHub API error: ${proyectos.status} ${proyectos.statusText}`);
+  }
+
+  const proyectosRaw = await proyectos.json();
+  rawArray = Array.isArray(proyectosRaw) ? proyectosRaw : [];
+
+  if (!Array.isArray(proyectosRaw)) {
+    console.warn("⚠️ proyectosRaw is not an array! Received:", proyectosRaw);
+  }
+} catch (error) {
+  console.error("❌ Error fetching GitHub repos:", error);
 }
 
 // Mapear solo los campos que necesitas de la respuesta de GitHub
@@ -36,13 +54,6 @@ const proyectosData: Project[] = rawArray
     language: repo.language ? [repo.language] : ['Unknown'],
     bannerImage: `https://raw.githubusercontent.com/${repo.full_name}/main/banner.png`
   }));
-
-export async function getStaticPaths() {
-	return [
-		{ params: { lang: 'es' } },
-		{ params: { lang: 'en' } }
-	];
-}
 ---
 
 <MainLayout lang={lang} title={`${t('nav.projects')} - Ander Aquerreta`}>

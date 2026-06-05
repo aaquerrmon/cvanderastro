@@ -2,20 +2,12 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import EducationCard from '../../components/EducationCard.astro';
 import { useTranslation, defaultLanguage, type Language } from '../../i18n/config';
-export const prerender = true;
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
 
 const formacion = (await import('../../data/formacion.json')).default;
 const formacionData = formacion[lang];
-
-export async function getStaticPaths() {
-	return [
-		{ params: { lang: 'es' } },
-		{ params: { lang: 'en' } }
-	];
-}
 ---
 
 <MainLayout lang={lang} title={`${t('nav.education')} - Ander Aquerreta`}>

@@ -3,7 +3,6 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import LinkedInPostCard from '../../components/LinkedInPostCard.astro';
 import { useTranslation, type Language } from '../../i18n/config';
-export const prerender = true;
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
@@ -15,13 +14,6 @@ const linkedinPosts = (await import('../../data/linkedin-posts.json')).default;
 const cvData = cv[lang];
 const experienciaData = experiencia[lang];
 const postsData = linkedinPosts[lang];
-
-export async function getStaticPaths() {
-	return [
-		{ params: { lang: 'es' } },
-		{ params: { lang: 'en' } }
-	];
-}
 ---
 
 <MainLayout lang={lang} title={`${cvData.name} - ${cvData.title}`}>
