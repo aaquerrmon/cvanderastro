@@ -3,6 +3,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslation, type Language } from '../../i18n/config';
 import { type Project } from '../../types';
+import { env } from 'cloudflare:workers';
 
 
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
@@ -12,9 +13,9 @@ const t = useTranslation(lang);
 let rawArray: any[] = [];
 
 try {
-  // En Cloudflare: Astro.locals.runtime.env.GITHUB_TOKEN
+  // En Cloudflare v6: env.GITHUB_TOKEN
   // En local: import.meta.env.GITHUB_TOKEN
-  const token = Astro.locals.runtime?.env?.GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
+  const token = env?.GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
   
   if (!token) {
     console.error("❌ GITHUB_TOKEN no configurado. Configúralo en:");
