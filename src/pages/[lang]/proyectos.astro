@@ -4,18 +4,26 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslation, type Language } from '../../i18n/config';
 import { type Project } from '../../types';
 
+
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
+
 
 let rawArray: any[] = [];
 
 try {
-  const token = import.meta.env.GITHUB_TOKEN;
+  // En Cloudflare: Astro.locals.runtime.env.GITHUB_TOKEN
+  // En local: import.meta.env.GITHUB_TOKEN
+  const token = Astro.locals.runtime?.env?.GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
   
   if (!token) {
-    console.error("❌ GITHUB_TOKEN no está configurado en .env.local");
+    console.error("❌ GITHUB_TOKEN no configurado. Configúralo en:");
+    console.error("  - Local: .env.local");
+    console.error("  - Cloudflare: Dashboard → Settings → Environment Variables");
     throw new Error("GITHUB_TOKEN no configurado");
   }
+
+  console.log("🔑 Token presente:", token.substring(0, 10) + "...");
 
   const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
     headers: {
