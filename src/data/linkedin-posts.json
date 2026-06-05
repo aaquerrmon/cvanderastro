@@ -7,7 +7,7 @@
       "likes": 27,
       "comments": 8,
       "shares": 1,
-      "image": "/src/imagenes/hackathon2023.jpeg"
+      "image": "/imagenes/hackathon2023.jpeg"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "likes": 19,
       "comments": 2,
       "shares": 2,
-      "image": "/src/imagenes/hackathonBarcelona.jpeg"
+      "image": "/imagenes/hackathonBarcelona.jpeg"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "likes": 29,
       "comments": 1,
       "shares": 0,
-      "image": "/src/imagenes/hackathonBilbao.png"
+      "image": "/imagenes/hackathonBilbao.png"
     }
   ],
   "en": [
@@ -33,28 +33,28 @@
       "id": 1,
       "date": "2024-10",
       "content": "I implemented a complete RAG system with vLLM and vector databases. The system processes complex documents and generates accurate responses using local LLMs.",
-      "likes": 245,
-      "comments": 18,
-      "shares": 32,
-      "image": "https://via.placeholder.com/400x250?text=RAG+System"
+      "likes": 27,
+      "comments": 8,
+      "shares": 1,
+      "image": "/imagenes/hackathon2023.jpeg"
     },
     {
       "id": 2,
       "date": "2024-08",
       "content": "Sharing my experience automating ML pipelines with Apache Airflow. We reduced execution time by 60% and improved reliability.",
-      "likes": 189,
-      "comments": 14,
-      "shares": 22,
-      "image": "https://via.placeholder.com/400x250?text=Apache+Airflow"
+      "likes": 19,
+      "comments": 2,
+      "shares": 2,
+      "image": "/imagenes/hackathonBarcelona.jpeg"
     },
     {
       "id": 3,
       "date": "2024-06",
       "content": "Fine-tuning LLMs for domain-specific tasks. I explore techniques like LoRA and QLoRA to optimize models with limited resources.",
-      "likes": 312,
-      "comments": 28,
-      "shares": 45,
-      "image": "https://via.placeholder.com/400x250?text=LLM+Fine-tuning"
+      "likes": 29,
+      "comments": 1,
+      "shares": 0,
+      "image": "/imagenes/hackathonBilbao.png"
     }
   ]
 }
