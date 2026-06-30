@@ -10,65 +10,51 @@ const cvData = cv[lang];
 ---
 
 <MainLayout lang={lang} title={`${t('nav.contact')} - Ander Aquerreta`}>
-	<section class="py-20 px-4 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+	<section class="py-28 px-4">
 		<div class="max-w-3xl mx-auto">
-			<!-- Header -->
-			<div class="mb-16 text-center">
-				<h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-					{t('contact.title')}
-				</h1>
-				<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-					{t('contact.description')}
-				</p>
-				<div class="mt-4 h-1 w-20 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 rounded-full mx-auto"></div>
+			<div class="text-center mb-16">
+				<h1 class="section-title gradient-text">{t('contact.title')}</h1>
+				<div class="glow-line"></div>
+				<p class="section-subtitle">{t('contact.description')}</p>
 			</div>
 
-			<!-- Contact Information -->
-			<div class="space-y-6">
+			<div class="max-w-xl mx-auto space-y-6">
 				<!-- Email -->
-				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
-					<div class="flex items-center gap-4">
-						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center text-white text-xl">
-							✉️
-						</div>
-						<div>
-							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Email' : 'Email'}</h3>
-							<a href={`mailto:${cvData.email}`} class="text-sky-600 dark:text-cyan-400 hover:text-sky-700 dark:hover:text-cyan-300 text-lg font-medium transition">
-								{cvData.email}
-							</a>
-						</div>
+				<a href={`mailto:${cvData.email}`} class="glass-card-hover p-6 flex items-center gap-5 group block">
+					<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
 					</div>
-				</div>
+					<div>
+						<p class="text-xs font-mono text-slate-500 mb-0.5">{lang === 'es' ? 'Email' : 'Email'}</p>
+						<p class="text-base text-slate-200 group-hover:text-cyan-400 transition font-medium">{cvData.email}</p>
+					</div>
+				</a>
 
 				<!-- Location -->
-				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
-					<div class="flex items-center gap-4">
-						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center text-white text-xl">
-							📍
-						</div>
-						<div>
-							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-1">{lang === 'es' ? 'Ubicación' : 'Location'}</h3>
-							<p class="text-slate-600 dark:text-slate-400 text-lg">{cvData.location}</p>
-						</div>
+				<div class="glass-card-hover p-6 flex items-center gap-5">
+					<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center text-white shrink-0">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+					</div>
+					<div>
+						<p class="text-xs font-mono text-slate-500 mb-0.5">{lang === 'es' ? 'Ubicación' : 'Location'}</p>
+						<p class="text-base text-slate-200 font-medium">{cvData.location}</p>
 					</div>
 				</div>
 
-				<!-- Social Media -->
-				<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border border-slate-100 dark:border-slate-700">
-					<div class="flex items-start gap-4">
-						<div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-							🔗
-						</div>
-						<div class="flex-grow">
-							<h3 class="font-semibold text-slate-700 dark:text-slate-300 mb-4">{lang === 'es' ? 'Redes Sociales' : 'Social Media'}</h3>
-							<div class="flex gap-3 flex-wrap">
-								<a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-slate-800 dark:bg-slate-700 text-white dark:text-slate-100 rounded-lg hover:bg-slate-900 dark:hover:bg-slate-600 transition font-medium">
-									GitHub
-								</a>
-								<a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
-									LinkedIn
-								</a>
-							</div>
+				<!-- Social -->
+				<div class="glass-card-hover p-6 flex items-center gap-5">
+					<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shrink-0">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+					</div>
+					<div>
+						<p class="text-xs font-mono text-slate-500 mb-2">{lang === 'es' ? 'Redes Sociales' : 'Social Media'}</p>
+						<div class="flex gap-3">
+							<a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm rounded-lg bg-slate-800/50 border border-slate-700/50 text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition font-medium">
+								GitHub
+							</a>
+							<a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm rounded-lg bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/30 transition font-medium">
+								LinkedIn
+							</a>
 						</div>
 					</div>
 				</div>

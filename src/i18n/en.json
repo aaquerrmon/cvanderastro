@@ -12,17 +12,32 @@
     "hero": {
       "title": "Hi, I'm Ander",
       "subtitle": "AI Engineer | RAG & LLM Specialist",
-      "description": "Passionate developer focused on production AI systems, natural language processing, and workflow automation."
+      "description": "Passionate developer focused on production AI systems, natural language processing, and workflow automation.",
+      "terminal_tagline": "Crafting elegant solutions to complex problems with clean code and innovative thinking."
     },
     "summary": {
       "title": "About Me",
-      "content": "I'm an AI Engineer with experience in end-to-end RAG system development, local LLM deployment, and backend development for AI applications. Graduate in Artificial Intelligence with specialization in shape recognition and digital image processing."
+      "content": "I'm an AI Engineer with experience in end-to-end RAG system development, local LLM deployment, and backend development for AI applications. Graduate in Artificial Intelligence with specialization in shape recognition and digital image processing.",
+      "stats_repos": "Repos",
+      "stats_commits": "Commits",
+      "stats_prs": "PRs"
+    },
+    "skills": {
+      "title": "My Toolbox"
+    },
+    "code": {
+      "title": "Workspace"
     },
     "experience": {
       "title": "Featured Experience"
     },
     "posts": {
-      "title": "Latest Posts"
+      "title": "What They Say"
+    },
+    "cta": {
+      "title": "Ready to Collaborate?",
+      "description": "My life revolves around code, coffee, and creativity. Let's build something amazing together!",
+      "button": "Hire Me"
     },
     "contact": {
       "title": "Let's Talk",
@@ -62,7 +77,11 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Ander Aquerreta. All rights reserved."
+    "copyright": "© 2026 Ander Aquerreta. All rights reserved.",
+    "newsletter": "Newsletter",
+    "newsletter_placeholder": "your@email.com",
+    "newsletter_button": "Subscribe",
+    "quick_links": "Quick Links"
   },
   "common": {
     "month": {

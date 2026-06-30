@@ -12,17 +12,32 @@
     "hero": {
       "title": "Hola, soy Ander",
       "subtitle": "Ingeniero de IA | Especialista en RAG y LLMs",
-      "description": "Desarrollador apasionado por sistemas de IA en producción, procesamiento de lenguaje natural y automatización de workflows."
+      "description": "Desarrollador apasionado por sistemas de IA en producción, procesamiento de lenguaje natural y automatización de workflows.",
+      "terminal_tagline": "Crafteando soluciones elegantes para problemas complejos con código limpio e innovación."
     },
     "summary": {
-      "title": "Sobre mí",
-      "content": "Soy Ingeniero de IA con experiencia en desarrollo end-to-end de sistemas RAG, deployment de LLMs locales y desarrollo de backends para aplicaciones de IA. Graduado en Inteligencia Artificial con especialización en reconocimiento de formas e imágenes digitales."
+      "title": "Sobre Mí",
+      "content": "Soy Ingeniero de IA con experiencia en desarrollo end-to-end de sistemas RAG, deployment de LLMs locales y desarrollo de backends para aplicaciones de IA. Graduado en Inteligencia Artificial con especialización en reconocimiento de formas e imágenes digitales.",
+      "stats_repos": "Repos",
+      "stats_commits": "Commits",
+      "stats_prs": "PRs"
+    },
+    "skills": {
+      "title": "Mi Stack"
+    },
+    "code": {
+      "title": "Workspace"
     },
     "experience": {
       "title": "Experiencia Destacada"
     },
     "posts": {
-      "title": "Últimos Posts"
+      "title": "Lo Que Dicen de Mí"
+    },
+    "cta": {
+      "title": "¿Listo para Colaborar?",
+      "description": "Mi vida gira en torno al código, el café y la creatividad. ¡Construyamos algo increíble juntos!",
+      "button": "Contrátame"
     },
     "contact": {
       "title": "¿Hablamos?",
@@ -62,7 +77,11 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Ander Aquerreta. Todos los derechos reservados."
+    "copyright": "© 2026 Ander Aquerreta. Todos los derechos reservados.",
+    "newsletter": "Newsletter",
+    "newsletter_placeholder": "tu@email.com",
+    "newsletter_button": "Suscribirse",
+    "quick_links": "Enlaces"
   },
   "common": {
     "month": {

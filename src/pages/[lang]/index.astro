@@ -1,6 +1,11 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import TerminalHero from '../../components/TerminalHero.astro';
+import CodeWindow from '../../components/CodeWindow.astro';
+import StatsCard from '../../components/StatsCard.astro';
+import SkillBar from '../../components/SkillBar.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import LinkedInPostCard from '../../components/LinkedInPostCard.astro';
 import { useTranslation, type Language } from '../../i18n/config';
 
@@ -10,120 +15,196 @@ const t = useTranslation(lang);
 const cv = (await import('../../data/cv.json')).default;
 const experiencia = (await import('../../data/experiencia.json')).default;
 const linkedinPosts = (await import('../../data/linkedin-posts.json')).default;
+const proyectos = (await import('../../data/proyectos.json')).default;
 
 const cvData = cv[lang];
 const experienciaData = experiencia[lang];
 const postsData = linkedinPosts[lang];
+const proyectosData = proyectos[lang];
 ---
 
 <MainLayout lang={lang} title={`${cvData.name} - ${cvData.title}`}>
-	<!-- Hero Section -->
-	<section class="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-		<!-- Fondo de imagen -->
-		<div 
-			class="absolute inset-0 z-0 bg-cover bg-center opacity-20"
-			style="background-image: url('/imagenes/fotoGraduacion.jpeg');"
-		></div>
-		
-		<div class="relative max-w-5xl mx-auto text-center">
-			<div class="mb-8 flex justify-center">
-				<div class="w-32 h-32 rounded-full bg-gradient-to-br from-sky-500 via-emerald-500 to-cyan-500 flex items-center justify-center text-white text-6xl font-bold">
-					AA
-				</div>
-			</div>
-      
-			<h1 class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-				{cvData.name}
-			</h1>
-      
-			<p class="text-2xl md:text-3xl text-slate-600 dark:text-slate-400 mb-6">
-				{t('home.hero.subtitle')}
-			</p>
-      
-			<div class="flex gap-4 justify-center flex-wrap">
-				<a href={`/${lang}/experiencia`} class="px-8 py-3 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-					{t('nav.experience')}
-				</a>
-				<a href={`/${lang}/contacto`} class="px-8 py-3 border-2 border-emerald-600 text-emerald-600 dark:text-emerald-400 font-semibold rounded-lg hover:bg-emerald-50 dark:hover:bg-slate-800 transition-all duration-300">
-					{t('contact.title')}
-				</a>
-			</div>
-		</div>
-	</section>
 
-	<!-- About Section -->
-	<section class="py-20 px-4 bg-slate-50 dark:bg-slate-900">
-		<div class="max-w-5xl mx-auto">
-			<h2 class="text-4xl font-bold mb-8 text-center">{t('home.summary.title')}</h2>
-			<div class="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-lg">
-				<p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-					{t('home.summary.content')}
-				</p>
-        
-				<div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-					{cvData.skills.slice(0, 8).map((skill) => (
-						<div class="text-center p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
-							<span class="text-slate-700 dark:text-slate-300 font-medium">{skill}</span>
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- ════ HERO ════ -->
+  <TerminalHero
+    name={cvData.name}
+    title={cvData.title}
+    tagline={t('home.hero.terminal_tagline')}
+    email={cvData.email}
+    lang={lang}
+  />
 
-	<!-- Featured Experience -->
-	<section class="py-20 px-4">
-		<div class="max-w-5xl mx-auto">
-			<h2 class="text-4xl font-bold mb-12 text-center">{t('home.experience.title')}</h2>
-			<div class="space-y-6">
-				{experienciaData.slice(0, 2).map((exp) => (
-					<ExperienceCard experience={exp} lang={lang} />
-				))}
-			</div>
-			<div class="text-center mt-8">
-				<a href={`/${lang}/experiencia`} class="text-sky-600 dark:text-cyan-400 hover:underline font-semibold">
-					{lang === 'es' ? 'Ver todas las experiencias →' : 'View all experience →'}
-				</a>
-			</div>
-		</div>
-	</section>
+  <!-- ════ CODE WINDOW ════ -->
+  <section id="workspace">
+    <CodeWindow lang={lang} />
+  </section>
 
-	<!-- LinkedIn Posts -->
-	<section class="py-20 px-4 bg-slate-50 dark:bg-slate-900">
-		<div class="max-w-5xl mx-auto">
-			<h2 class="text-4xl font-bold mb-12 text-center">{t('home.posts.title')}</h2>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-				{postsData.slice(0, 3).map((post) => (
-					<LinkedInPostCard post={post} />
-				))}
-			</div>
-			<div class="text-center mt-8">
-				<a href="https://www.linkedin.com/in/ander-aquerreta-montoro/" target="_blank" class="text-sky-600 dark:text-cyan-400 hover:underline font-semibold">
-					{lang === 'es' ? 'Ver más en LinkedIn →' : 'View more on LinkedIn →'}
-				</a>
-			</div>
-		</div>
-	</section>
+  <!-- ════ ABOUT + STATS + SKILLS ════ -->
+  <section id="about" class="py-24 px-4 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.02] to-transparent pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-title gradient-text">{t('home.summary.title')}</h2>
+      <div class="glow-line"></div>
+      <p class="section-subtitle">{cvData.bio}</p>
 
-	<!-- Contact CTA -->
-	<section class="py-20 px-4">
-		<div class="max-w-4xl mx-auto text-center">
-			<h2 class="text-4xl font-bold mb-6">{t('home.contact.title')}</h2>
-			<p class="text-lg text-slate-600 dark:text-slate-400 mb-8">
-				{t('home.contact.description')}
-			</p>
-			<a href={`/${lang}/contacto`} class="inline-block px-8 py-3 bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-				{t('home.contact.button')}
-			</a>
-		</div>
-	</section>
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-4 mb-16 max-w-lg mx-auto">
+        <StatsCard value="0" label={t('home.summary.stats_repos')} gradient="from-cyan-500 to-blue-500" />
+        <StatsCard value="0" label={t('home.summary.stats_commits')} gradient="from-emerald-500 to-green-500" />
+        <StatsCard value="0" label={t('home.summary.stats_prs')} gradient="from-purple-500 to-pink-500" />
+      </div>
+
+      <!-- Skills -->
+      <h3 class="text-xl font-semibold text-center text-slate-300 mb-8">{t('home.skills.title')}</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
+        <div class="glass-card p-6 space-y-4">
+          <h4 class="text-sm font-mono text-cyan-400 uppercase tracking-wider">AI / ML</h4>
+          <SkillBar name="LLMs & RAG" percentage={95} color="from-cyan-500 to-blue-500" />
+          <SkillBar name="PyTorch / TF" percentage={85} color="from-cyan-500 to-blue-500" />
+          <SkillBar name="Computer Vision" percentage={75} color="from-cyan-500 to-blue-500" />
+          <SkillBar name="Fine-tuning" percentage={80} color="from-cyan-500 to-blue-500" />
+        </div>
+        <div class="glass-card p-6 space-y-4">
+          <h4 class="text-sm font-mono text-emerald-400 uppercase tracking-wider">Backend / MLOps</h4>
+          <SkillBar name="Python" percentage={95} color="from-emerald-500 to-green-500" />
+          <SkillBar name="Docker" percentage={85} color="from-emerald-500 to-green-500" />
+          <SkillBar name="SQL" percentage={80} color="from-emerald-500 to-green-500" />
+          <SkillBar name="Airflow" percentage={75} color="from-emerald-500 to-green-500" />
+        </div>
+        <div class="glass-card p-6 space-y-4">
+          <h4 class="text-sm font-mono text-purple-400 uppercase tracking-wider">Dev / Tools</h4>
+          <SkillBar name="Git" percentage={90} color="from-purple-500 to-pink-500" />
+          <SkillBar name="JavaScript" percentage={70} color="from-purple-500 to-pink-500" />
+          <SkillBar name="Java" percentage={65} color="from-purple-500 to-pink-500" />
+          <SkillBar name="Tableau" percentage={70} color="from-purple-500 to-pink-500" />
+        </div>
+      </div>
+
+      <!-- Tech tags cloud -->
+      <div class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+        {cvData.skills.map((skill) => (
+          <span class="tech-tag text-sm px-4 py-1.5 bg-slate-800/30 border-slate-700/30 hover:border-cyan-500/40 hover:text-cyan-300 transition-all cursor-default">{skill}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FEATURED EXPERIENCE ════ -->
+  <section id="experience" class="py-24 px-4 bg-[#06060b]">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-title gradient-text-purple">{t('home.experience.title')}</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-12"></div>
+
+      <div class="space-y-6">
+        {experienciaData.slice(0, 2).map((exp) => (
+          <ExperienceCard experience={exp} lang={lang} />
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href={`/${lang}/experiencia`} class="text-sm font-mono text-slate-500 hover:text-cyan-400 transition inline-flex items-center gap-2 group">
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+          {lang === 'es' ? 'Ver toda la experiencia' : 'View all experience'}
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PROJECTS ════ -->
+  <section id="projects" class="py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-title gradient-text">{t('projects.title')}</h2>
+      <div class="glow-line"></div>
+      <p class="section-subtitle">{t('projects.description')}</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {proyectosData.map((proj) => (
+          <ProjectCard
+            project={{
+              id: proj.id,
+              fullname: proj.title,
+              description: proj.description,
+              html_url: proj.link,
+              private: false,
+              language: proj.technologies,
+            }}
+            lang={lang}
+          />
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href={`/${lang}/proyectos`} class="text-sm font-mono text-slate-500 hover:text-cyan-400 transition inline-flex items-center gap-2 group">
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+          {lang === 'es' ? 'Ver proyectos en GitHub' : 'View GitHub projects'}
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ LINKEDIN POSTS ════ -->
+  <section id="posts" class="py-24 px-4 bg-[#06060b]">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-title gradient-text-purple">{lang === 'es' ? 'Post destacados de LinkedIn' : 'Featured LinkedIn Posts'}</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-12"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {postsData.slice(0, 3).map((post) => (
+          <LinkedInPostCard post={post} />
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="https://www.linkedin.com/in/ander-aquerreta-montoro/" target="_blank" class="text-sm font-mono text-slate-500 hover:text-cyan-400 transition inline-flex items-center gap-2 group">
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+          {lang === 'es' ? 'Ver más en LinkedIn' : 'View more on LinkedIn'}
+          <span class="w-8 h-px bg-slate-700 group-hover:w-12 group-hover:bg-cyan-500 transition-all duration-300"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ CONTACT ════ -->
+  <section id="contact" class="py-24 px-4 bg-[#06060b]">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="section-title gradient-text">{t('contact.title')}</h2>
+      <div class="glow-line"></div>
+      <p class="section-subtitle">{t('contact.description')}</p>
+
+      <div class="space-y-6 max-w-xl mx-auto">
+        <a href={`mailto:${cvData.email}`} class="glass-card-hover p-5 flex items-center gap-4 group block">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 font-mono">{lang === 'es' ? 'Email' : 'Email'}</p>
+            <p class="text-sm text-slate-300 group-hover:text-cyan-400 transition">{cvData.email}</p>
+          </div>
+        </a>
+
+        <div class="glass-card-hover p-5 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center text-white shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 font-mono">{lang === 'es' ? 'Ubicación' : 'Location'}</p>
+            <p class="text-sm text-slate-300">{cvData.location}</p>
+          </div>
+        </div>
+
+        <div class="glass-card-hover p-5 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          </div>
+          <div class="flex gap-3">
+            <a href={cvData.social.github} target="_blank" rel="noopener noreferrer" class="text-sm text-slate-500 hover:text-cyan-400 transition">GitHub</a>
+            <span class="text-slate-700">|</span>
+            <a href={cvData.social.linkedin} target="_blank" rel="noopener noreferrer" class="text-sm text-slate-500 hover:text-cyan-400 transition">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </MainLayout>
-
-<script>
-	// Get language from localStorage
-	const savedLang = localStorage.getItem('language') || 'es';
-	if (savedLang && savedLang !== 'es') {
-		// If not Spanish, you can handle language switching here
-		// For now, we default to Spanish for the initial page
-	}
-</script>

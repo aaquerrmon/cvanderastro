@@ -11,11 +11,12 @@ const formacionData = formacion[lang];
 ---
 
 <MainLayout lang={lang} title={`${t('nav.education')} - Ander Aquerreta`}>
-	<section class="py-20 px-4">
-		<div class="max-w-5xl mx-auto">
-			<div class="mb-12">
-				<h1 class="text-5xl font-bold mb-4">{t('education.title')}</h1>
-				<p class="text-lg text-slate-600 dark:text-slate-400">{t('education.description')}</p>
+	<section class="py-28 px-4">
+		<div class="max-w-4xl mx-auto">
+			<div class="text-center mb-16">
+				<h1 class="section-title gradient-text-purple">{t('education.title')}</h1>
+				<div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-8"></div>
+				<p class="section-subtitle">{t('education.description')}</p>
 			</div>
 
 			{formacionData.length > 0 ? (
@@ -26,7 +27,7 @@ const formacionData = formacion[lang];
 				</div>
 			) : (
 				<div class="text-center py-12">
-					<p class="text-slate-600 dark:text-slate-400">{t('education.noEducation')}</p>
+					<p class="text-slate-500">{t('education.noEducation')}</p>
 				</div>
 			)}
 		</div>

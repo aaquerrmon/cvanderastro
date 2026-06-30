@@ -5,54 +5,36 @@ import { useTranslation, type Language } from '../../i18n/config';
 import { type Project } from '../../types';
 import { env } from 'cloudflare:workers';
 
-
 const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
 const t = useTranslation(lang);
 
+const proyectos = (await import('../../data/proyectos.json')).default;
+const proyectosLocal = proyectos[lang];
 
 let rawArray: any[] = [];
 
 try {
-  // En Cloudflare v6: env.GITHUB_TOKEN
-  // En local: import.meta.env.GITHUB_TOKEN
   const token = env?.GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
-  
-  if (!token) {
-    console.error("❌ GITHUB_TOKEN no configurado. Configúralo en:");
-    console.error("  - Local: .env.local");
-    console.error("  - Cloudflare: Dashboard → Settings → Environment Variables");
-    throw new Error("GITHUB_TOKEN no configurado");
-  }
 
-  console.log("🔑 Token presente:", token.substring(0, 10) + "...");
+  if (token) {
+    const response = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'Mozilla/5.0 (Compatible; Astro)'
+      }
+    });
 
-  const proyectos = await fetch('https://api.github.com/users/aaquerrmon/repos?sort=updated', {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'Mozilla/5.0 (Compatible; Astro)'
+    if (response.ok) {
+      const proyectosRaw = await response.json();
+      rawArray = Array.isArray(proyectosRaw) ? proyectosRaw : [];
     }
-  });
-
-  if (!proyectos.ok) {
-    const errorText = await proyectos.text();
-    console.error("📄 Response body:", errorText);
-    throw new Error(`GitHub API error: ${proyectos.status} ${proyectos.statusText}`);
-  }
-
-  const proyectosRaw = await proyectos.json();
-  rawArray = Array.isArray(proyectosRaw) ? proyectosRaw : [];
-
-  if (!Array.isArray(proyectosRaw)) {
-    console.warn("⚠️ proyectosRaw is not an array! Received:", proyectosRaw);
   }
 } catch (error) {
-  console.error("❌ Error fetching GitHub repos:", error);
+  console.error("Error fetching GitHub repos:", error);
 }
 
-// Mapear solo los campos que necesitas de la respuesta de GitHub
-// Filtrar solo proyectos que NO son forked
-const proyectosData: Project[] = rawArray
+const githubProjects: Project[] = rawArray
   .filter((repo: any) => !repo.fork)
   .map((repo: any) => ({
     id: repo.id,
@@ -63,25 +45,40 @@ const proyectosData: Project[] = rawArray
     language: repo.language ? [repo.language] : ['Unknown'],
     bannerImage: `https://raw.githubusercontent.com/${repo.full_name}/main/banner.png`
   }));
+
+const allProjects = [
+  ...proyectosLocal.map((p) => ({
+    id: p.id,
+    fullname: p.title,
+    description: p.description,
+    html_url: p.link,
+    private: false,
+    language: p.technologies,
+  })),
+  ...githubProjects,
+];
 ---
 
 <MainLayout lang={lang} title={`${t('nav.projects')} - Ander Aquerreta`}>
-	<section class="py-20 px-4">
+	<section class="py-28 px-4">
 		<div class="max-w-5xl mx-auto">
-			<div class="mb-12">
-				<h1 class="text-5xl font-bold mb-4">{t('projects.title')}</h1>
-				<p class="text-lg text-slate-600 dark:text-slate-400">{t('projects.description')}</p>
+			<div class="text-center mb-16">
+				<h1 class="section-title gradient-text">{t('projects.title')}</h1>
+				<div class="glow-line"></div>
+				<p class="section-subtitle">{t('projects.description')}</p>
 			</div>
 
-			{proyectosData.length > 0 ? (
+			{githubProjects.length > 0 ? (
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					{proyectosData.map((project) => (
+					{githubProjects.map((project) => (
 						<ProjectCard project={project} lang={lang} />
 					))}
 				</div>
 			) : (
 				<div class="text-center py-12">
-					<p class="text-slate-600 dark:text-slate-400">{t('projects.noProjects')}</p>
+					<div class="glass-card p-12 max-w-md mx-auto">
+						<p class="text-slate-500 font-mono text-sm">{t('projects.noProjects')}</p>
+					</div>
 				</div>
 			)}
 		</div>

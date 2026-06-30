@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.7",
     "daisyui": "^5.5.20",
+    "lru-cache": "^11.5.1",
     "tailwindcss": "^4.3.0",
     "wrangler": "^4.97.0",
     "zustand": "^5.0.13"
