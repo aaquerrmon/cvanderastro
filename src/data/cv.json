@@ -4,7 +4,7 @@
     "title": "Ingeniero de IA",
     "location": "Valencia, España",
     "email": "anderaquerretamontoro@gmail.com",
-    "bio": "Desarrollador especializado en sistemas RAG, LLMs en producción, y automatización de workflows. Graduado en Inteligencia Artificial con experiencia en proyectos end-to-end de IA.",
+    "bio": "Desarrollador especializado en sistemas RAG, LLMs en producción, y automatización de workflows con mas de 2 años de experiencia laboral en el sector. Graduado en Inteligencia Artificial con experiencia en proyectos end-to-end de IA.",
     "skills": [
       "Python",
       "JavaScript",
@@ -18,7 +18,11 @@
       "Docker",
       "Apache Airflow",
       "Git",
-      "Tableau"
+      "Tableau",
+      "Docker",
+      "Power BI",
+      "FastAPI",
+      "Milvus"
     ],
     "social": {
       "github": "https://github.com/aaquerrmon",
@@ -31,7 +35,7 @@
     "title": "AI Engineer",
     "location": "Valencia, Spain",
     "email": "anderaquerretamontoro@gmail.com",
-    "bio": "Developer specialized in RAG systems, production LLMs, and workflow automation. Graduate in Artificial Intelligence with experience in end-to-end AI projects.",
+    "bio": "Developer specialized in RAG systems, production LLMs, and workflow automation with over 2 years of professional experience in the field. Graduate in Artificial Intelligence with experience in end-to-end AI projects.",
     "skills": [
       "Python",
       "JavaScript",
@@ -45,7 +49,11 @@
       "Docker",
       "Apache Airflow",
       "Git",
-      "Tableau"
+      "Tableau",
+      "Docker",
+      "Power BI",
+      "FastAPI",
+      "Milvus"
     ],
     "social": {
       "github": "https://github.com/aaquerrmon",

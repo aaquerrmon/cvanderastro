@@ -1,8 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import TerminalHero from '../../components/TerminalHero.astro';
-import CodeWindow from '../../components/CodeWindow.astro';
-import StatsCard from '../../components/StatsCard.astro';
+import AvatarSection from '../../components/AvatarSection.astro';
 import SkillBar from '../../components/SkillBar.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
@@ -34,10 +33,8 @@ const proyectosData = proyectos[lang];
     lang={lang}
   />
 
-  <!-- ════ CODE WINDOW ════ -->
-  <section id="workspace">
-    <CodeWindow lang={lang} />
-  </section>
+  <!-- ════ AVATAR SCROLL ════ -->
+  <AvatarSection lang={lang} />
 
   <!-- ════ ABOUT + STATS + SKILLS ════ -->
   <section id="about" class="py-24 px-4 relative">
@@ -47,21 +44,14 @@ const proyectosData = proyectos[lang];
       <div class="glow-line"></div>
       <p class="section-subtitle">{cvData.bio}</p>
 
-      <!-- Stats -->
-      <div class="grid grid-cols-3 gap-4 mb-16 max-w-lg mx-auto">
-        <StatsCard value="0" label={t('home.summary.stats_repos')} gradient="from-cyan-500 to-blue-500" />
-        <StatsCard value="0" label={t('home.summary.stats_commits')} gradient="from-emerald-500 to-green-500" />
-        <StatsCard value="0" label={t('home.summary.stats_prs')} gradient="from-purple-500 to-pink-500" />
-      </div>
-
       <!-- Skills -->
       <h3 class="text-xl font-semibold text-center text-slate-300 mb-8">{t('home.skills.title')}</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto">
         <div class="glass-card p-6 space-y-4">
           <h4 class="text-sm font-mono text-cyan-400 uppercase tracking-wider">AI / ML</h4>
           <SkillBar name="LLMs & RAG" percentage={95} color="from-cyan-500 to-blue-500" />
           <SkillBar name="PyTorch / TF" percentage={85} color="from-cyan-500 to-blue-500" />
-          <SkillBar name="Computer Vision" percentage={75} color="from-cyan-500 to-blue-500" />
+          <SkillBar name="Time Series" percentage={75} color="from-cyan-500 to-blue-500" />
           <SkillBar name="Fine-tuning" percentage={80} color="from-cyan-500 to-blue-500" />
         </div>
         <div class="glass-card p-6 space-y-4">
@@ -69,14 +59,21 @@ const proyectosData = proyectos[lang];
           <SkillBar name="Python" percentage={95} color="from-emerald-500 to-green-500" />
           <SkillBar name="Docker" percentage={85} color="from-emerald-500 to-green-500" />
           <SkillBar name="SQL" percentage={80} color="from-emerald-500 to-green-500" />
-          <SkillBar name="Airflow" percentage={75} color="from-emerald-500 to-green-500" />
+          <SkillBar name="API Development" percentage={75} color="from-emerald-500 to-green-500" />
         </div>
         <div class="glass-card p-6 space-y-4">
           <h4 class="text-sm font-mono text-purple-400 uppercase tracking-wider">Dev / Tools</h4>
           <SkillBar name="Git" percentage={90} color="from-purple-500 to-pink-500" />
           <SkillBar name="JavaScript" percentage={70} color="from-purple-500 to-pink-500" />
           <SkillBar name="Java" percentage={65} color="from-purple-500 to-pink-500" />
-          <SkillBar name="Tableau" percentage={70} color="from-purple-500 to-pink-500" />
+          <SkillBar name="Power BI" percentage={70} color="from-purple-500 to-pink-500" />
+        </div>
+        <div class="glass-card p-6 space-y-4">
+          <h4 class="text-sm font-mono text-red-400 uppercase tracking-wider">Databases</h4>
+          <SkillBar name="PostgreSQL" percentage={70} color="from-red-500 to-orange-500" />
+          <SkillBar name="OracleSQL" percentage={85} color="from-red-500 to-orange-500" />
+          <SkillBar name="ChromaDB" percentage={70} color="from-red-500 to-orange-500" />
+          <SkillBar name="Milvus" percentage={95} color="from-red-500 to-orange-500" />
         </div>
       </div>
 

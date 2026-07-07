@@ -1,0 +1,87 @@
+---
+import { type Language } from '../i18n/config';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="avatar-scroll" class="relative">
+  <div class="sticky top-0 h-screen w-full overflow-hidden bg-[#0a0a0f]">
+    <div class="relative w-full h-full flex items-center justify-center">
+      <video
+        id="avatar-video"
+        class="w-full h-full object-contain pointer-events-none"
+        src="/videoAvatarAnder.mp4"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#0a0a0f_100%)] pointer-events-none z-[1]"></div>
+      <div id="scroll-hint" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2]">
+        <span class="font-mono text-xs text-slate-500 bg-[#0a0a0f]/80 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-800/50">
+          {lang === 'es' ? '▼ Scrollea' : '▼ Scroll'}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="h-[80vh] pointer-events-none"></div>
+</section>
+
+<script>
+  (async () => {
+    const [
+      { default: gsap },
+      { ScrollTrigger },
+      { default: Lenis }
+    ] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+      import('lenis')
+    ]);
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const video = document.getElementById('avatar-video') as HTMLVideoElement;
+    const section = document.getElementById('avatar-scroll');
+    const hint = document.getElementById('scroll-hint');
+    if (!video || !section) return;
+
+    // Lenis smooth scroll
+    const lenis = new Lenis({ lerp: 0.12 });
+    lenis.on('scroll', () => ScrollTrigger.update());
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    let lastFrame = -1;
+    let fps = 30;
+
+    function setupScrollTrigger() {
+      if (!video.duration) return;
+      fps = Math.max(1, Math.round(video.duration * 30));
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const frame = Math.round(self.progress * fps);
+          if (frame !== lastFrame) {
+            lastFrame = frame;
+            video.currentTime = frame / fps;
+          }
+          if (hint) hint.style.opacity = String(1 - self.progress);
+        }
+      });
+    }
+
+    if (video.readyState >= 1) {
+      setupScrollTrigger();
+    } else {
+      video.addEventListener('loadedmetadata', setupScrollTrigger);
+    }
+  })();
+</script>

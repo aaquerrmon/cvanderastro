@@ -15,6 +15,7 @@ export interface Education {
   degree: string;
   field: string;
   institution: string;
+  url: string;
   startDate: string;
   endDate: string;
   description: string;

@@ -11,121 +11,6 @@ interface Props {
 
 const { name, title, tagline, email, lang } = Astro.props;
 const prefix = `/${lang}`;
-
-const commands = {
-  es: {
-    whoami: name,
-    quiensoy: name,
-    who: name,
-    titulo: title,
-    title: title,
-    ubicacion: "Valencia, España",
-    ubicación: "Valencia, España",
-    location: "Valencia, Spain",
-    email: email,
-    correo: email,
-    skills: "Python, JavaScript, SQL, Java, TensorFlow, PyTorch, vLLM, LangChain, PostgreSQL, Docker, Apache Airflow, Git, Tableau",
-    habilidades: "Python, JavaScript, SQL, Java, TensorFlow, PyTorch, vLLM, LangChain, PostgreSQL, Docker, Apache Airflow, Git, Tableau",
-    experiencia: "Ingeniero de IA @ Universidad Politécnica de Valencia (Oct 2024 — Presente)",
-    experience: "AI Engineer @ Universitat Politècnica de València (Oct 2024 — Present)",
-    formacion: "Máster Universitario en Inteligencia Artificial, Reconocimiento de Formas e Imagen Digital @ UPV",
-    education: "Master's Degree in Artificial Intelligence, Shape Recognition and Digital Image @ UPV",
-    github: "https://github.com/aaquerrmon",
-    linkedin: "https://linkedin.com/in/ander-aquerreta-montoro",
-    date: new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-    fecha: new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-    pwd: "/home/ander",
-    uptime: "2+ años en producción",
-    repo: "https://github.com/aaquerrmon?tab=repositories",
-  },
-  en: {
-    whoami: name,
-    quiensoy: name,
-    who: name,
-    titulo: title,
-    title: title,
-    ubicacion: "Valencia, Spain",
-    ubicación: "Valencia, Spain",
-    location: "Valencia, Spain",
-    email: email,
-    correo: email,
-    skills: "Python, JavaScript, SQL, Java, TensorFlow, PyTorch, vLLM, LangChain, PostgreSQL, Docker, Apache Airflow, Git, Tableau",
-    habilidades: "Python, JavaScript, SQL, Java, TensorFlow, PyTorch, vLLM, LangChain, PostgreSQL, Docker, Apache Airflow, Git, Tableau",
-    experiencia: "AI Engineer @ Universitat Politècnica de València (Oct 2024 — Present)",
-    experience: "AI Engineer @ Universitat Politècnica de València (Oct 2024 — Present)",
-    formacion: "Master's Degree in Artificial Intelligence, Shape Recognition and Digital Image @ UPV",
-    education: "Master's Degree in Artificial Intelligence, Shape Recognition and Digital Image @ UPV",
-    github: "https://github.com/aaquerrmon",
-    linkedin: "https://linkedin.com/in/ander-aquerreta-montoro",
-    date: new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-    fecha: new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-    pwd: "/home/ander",
-    uptime: "2+ years in production",
-    repo: "https://github.com/aaquerrmon?tab=repositories",
-  }
-};
-
-const helpText = {
-  es: [
-    "Comandos disponibles:",
-    "  whoami, quiensoy  — Nombre completo",
-    "  title, titulo     — Título profesional",
-    "  location, ubicacion — Ubicación",
-    "  email, correo     — Correo electrónico",
-    "  skills, habilidades — Stack tecnológico",
-    "  experience, experiencia — Experiencia actual",
-    "  education, formacion — Formación académica",
-    "  github            — Perfil de GitHub",
-    "  linkedin          — Perfil de LinkedIn",
-    "  date, fecha       — Fecha actual",
-    "  uptime            — Tiempo en producción",
-    "  pwd               — Directorio actual",
-    "  repo              — Repositorios en GitHub",
-    "  echo [texto]      — Repite el texto",
-    "  clear, limpia     — Limpiar terminal",
-    "  help, ayuda       — Mostrar esta ayuda",
-  ],
-  en: [
-    "Available commands:",
-    "  whoami, quiensoy  — Full name",
-    "  title, titulo     — Professional title",
-    "  location, ubicacion — Location",
-    "  email, correo     — Email address",
-    "  skills, habilidades — Tech stack",
-    "  experience, experiencia — Current position",
-    "  education, formacion — Education",
-    "  github            — GitHub profile",
-    "  linkedin          — LinkedIn profile",
-    "  date, fecha       — Current date",
-    "  uptime            — Time in production",
-    "  pwd               — Current directory",
-    "  repo              — GitHub repositories",
-    "  echo [text]       — Echo input text",
-    "  clear, limpia     — Clear terminal",
-    "  help, ayuda       — Show this help",
-  ]
-};
-
-const welcomeText = {
-  es: [
-    "╔══════════════════════════════════════╗",
-    "║   Bienvenido al terminal interactivo  ║",
-    "║        anderaquerreta.dev              ║",
-    "╠══════════════════════════════════════╣",
-    "║  Escribe 'help' o 'ayuda' para       ║",
-    "║  ver los comandos disponibles.       ║",
-    "╚══════════════════════════════════════╝",
-  ],
-  en: [
-    "╔══════════════════════════════════════╗",
-    "║   Welcome to the interactive terminal ║",
-    "║        anderaquerreta.dev              ║",
-    "╠══════════════════════════════════════╣",
-    "║  Type 'help' to see available         ║",
-    "║  commands.                            ║",
-    "╚══════════════════════════════════════╝",
-  ]
-};
 ---
 
 <section class="relative min-h-screen flex items-center justify-center px-4 pt-16 overflow-hidden">
@@ -194,33 +79,41 @@ const welcomeText = {
 
 <script>
   (function() {
-    const commands = JSON.parse(document.getElementById('terminal-data-commands').textContent);
-    const helpText = JSON.parse(document.getElementById('terminal-data-help').textContent);
-    const welcomeText = JSON.parse(document.getElementById('terminal-data-welcome').textContent);
+    const commands = JSON.parse(document.getElementById('terminal-data-commands')!.textContent);
+    const helpText = JSON.parse(document.getElementById('terminal-data-help')!.textContent);
+    const welcomeText = JSON.parse(document.getElementById('terminal-data-welcome')!.textContent);
+
 
     const output = document.getElementById('terminal-output');
-    const input = document.getElementById('terminal-input');
+    const input = document.getElementById('terminal-input') as HTMLInputElement | null;
     const body = document.getElementById('terminal-body');
+    
+    if (!output || !input || !body) return;
+
+    const outputEl = output;
+    const inputEl = input;
+    const bodyEl = body;
+    
     let history = [];
     let historyIndex = -1;
 
-    function writeLine(text, className = 'text-slate-300') {
+    function writeLine(text: string, className = 'text-slate-300') {
       const line = document.createElement('div');
       line.className = `whitespace-pre-wrap ${className}`;
       line.textContent = text;
-      output.appendChild(line);
-      body.scrollTop = body.scrollHeight;
+      outputEl.appendChild(line);
+      bodyEl.scrollTop = bodyEl.scrollHeight;
     }
 
-    function writePrompt(command) {
+    function writePrompt(command: string) {
       const line = document.createElement('div');
       line.className = 'flex';
       line.innerHTML = `<span class="text-emerald-400 shrink-0 mr-2">┃</span><span class="text-cyan-400 shrink-0">ander@ai-workspace</span><span class="text-slate-500 shrink-0">:</span><span class="text-purple-400 shrink-0">~</span><span class="text-slate-500 shrink-0">$ </span><span class="text-slate-200">${command}</span>`;
-      output.appendChild(line);
-      body.scrollTop = body.scrollHeight;
+      outputEl.appendChild(line);
+      bodyEl.scrollTop = bodyEl.scrollHeight;
     }
 
-    function processCommand(cmd) {
+    function processCommand(cmd: string) {
       const trimmed = cmd.trim();
       if (!trimmed) return;
 
@@ -231,12 +124,12 @@ const welcomeText = {
       const args = parts.slice(1).join(' ');
 
       if (command === 'clear' || command === 'limpia') {
-        output.innerHTML = '';
+        outputEl.innerHTML = '';
         return;
       }
 
       if (command === 'help' || command === 'ayuda') {
-        helpText.forEach(line => writeLine(line, 'text-slate-400'));
+        helpText.forEach((line: string) => writeLine(line, 'text-slate-400'));
         return;
       }
 
@@ -254,24 +147,24 @@ const welcomeText = {
     }
 
     // Initialize
-    welcomeText.forEach(line => writeLine(line, 'text-emerald-400'));
+    welcomeText.forEach((line: string) => writeLine(line, 'text-emerald-400'));
     writePrompt('help');
-    helpText.forEach(line => writeLine(line, 'text-slate-400'));
+    helpText.forEach((line: string) => writeLine(line, 'text-slate-400'));
 
-    input.addEventListener('keydown', (e) => {
+    inputEl.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
-        const cmd = input.value;
+        const cmd = inputEl.value;
         history.push(cmd);
         historyIndex = history.length;
         processCommand(cmd);
-        input.value = '';
+        inputEl.value = '';
       }
 
       if (e.key === 'ArrowUp') {
         e.preventDefault();
         if (historyIndex > 0) {
           historyIndex--;
-          input.value = history[historyIndex];
+          inputEl.value = history[historyIndex];
         }
       }
 
@@ -279,16 +172,16 @@ const welcomeText = {
         e.preventDefault();
         if (historyIndex < history.length - 1) {
           historyIndex++;
-          input.value = history[historyIndex];
+          inputEl.value = history[historyIndex];
         } else {
           historyIndex = history.length;
-          input.value = '';
+          inputEl.value = '';
         }
       }
     });
 
     // Refocus input when clicking anywhere in terminal
-    body.addEventListener('click', () => input.focus());
+    bodyEl.addEventListener('click', () => inputEl.focus());
   })();
 </script>
 
@@ -388,8 +281,8 @@ const HELP_EN = [
 
 const WELCOME_ES = [
   "╔══════════════════════════════════════╗",
-  "║   Bienvenido al terminal interactivo  ║",
-  "║        anderaquerreta.dev              ║",
+  "║   Bienvenido al terminal interactivo ║",
+  "║        anderaquerreta.dev            ║",
   "╠══════════════════════════════════════╣",
   "║  Escribe 'help' o 'ayuda' para       ║",
   "║  ver los comandos disponibles.       ║",
@@ -398,11 +291,11 @@ const WELCOME_ES = [
 
 const WELCOME_EN = [
   "╔══════════════════════════════════════╗",
-  "║   Welcome to the interactive terminal ║",
-  "║        anderaquerreta.dev              ║",
+  "║  Welcome to the interactive terminal ║",
+  "║        anderaquerreta.dev            ║",
   "╠══════════════════════════════════════╣",
-  "║  Type 'help' to see available         ║",
-  "║  commands.                            ║",
+  "║  Type 'help' to see available        ║",
+  "║  commands.                           ║",
   "╚══════════════════════════════════════╝",
 ];
 

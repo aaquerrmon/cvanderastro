@@ -24,7 +24,15 @@ const { education, lang } = Astro.props;
         </span>
       </div>
       <p class="text-sm text-cyan-400 mb-1">{education.field}</p>
-      <p class="text-xs text-slate-500 mb-3">{education.institution}</p>
+      <p class="text-xs text-slate-500 mb-3">
+        <a
+        href={education.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+        {education.institution}
+        </a>
+      </p>
       <p class="text-sm text-slate-400 leading-relaxed mb-3">{education.description}</p>
 
       <div class="space-y-1.5">
