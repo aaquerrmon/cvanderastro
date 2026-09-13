@@ -8,7 +8,7 @@
       "startDate": "2024-10-31",
       "endDate": null,
       "location": "Valencia, España",
-      "description": "Desarrollo end-to-end de sistemas RAG desde cero desplegando LLMs locales y bases de datos vectoriales. Deployment y orquestación de LLMs locales vía vLLM. Experiencia con modelos de embedding y pipelines de re-ranking. Desarrollo de backend para aplicaciones de IA. Deployment de sistemas de IA en producción. Gestión de infraestructura distribuida (entornos de computación a escala universitaria). Automatización de workflows usando Apache Airflow y Temporal. Uso de Docker y Git para control de versiones y containerización. Fine-tuning de grandes modelos de lenguaje (LLMs). Experiencia con prácticas MLOps y gestión del ciclo de vida.",
+      "description": "• Diseño y despliegue de una plataforma integral de Inteligencia Artificial (RAG) desde cero para toda la universidad (+40.000 usuarios), garantizando el 100% de la privacidad de los datos en servidores locales (on-premise) mediante la orquestación de modelos de lenguaje, bases de datos vectoriales y sistemas de ingesta de documentos. \n • Automatización de flujos de trabajo con Apache Airflow, logrando reducir el tiempo de resolución de incidencias en un 40% a través de la categorización inteligente. \n • Actualización de LLM y motores de búsqueda de la institución, incrementando la calidad de las respuestas en un 30% (según evaluaciones internas) y duplicando la velocidad de procesamiento con modelos de código abierto. \n • Incremento de la precisión del modelo institucional del 64,9% al 86,5% en pruebas internas, mediante el re-entrenamiento (fine-tuning) del modelo con datos propios de la organización. \n • Creación de una plataforma de recomendación semántica de vídeo para asignaturas universitarias (+1.000 horas de vídeo indexadas en más de 4.000 materias) mediante el desarrollo de pipelines de extracción de datos, transcripción automática y una aplicación web interactiva. \n • Reestructuración de la infraestructura de IA en servidores locales, multiplicando por 4 (400%) el rendimiento global del sistema gracias a la optimización y segmentación de los recursos de computación.",
       "technologies": ["Python", "LangChain", "vLLM", "PostgreSQL", "Milvus", "Docker", "Apache Airflow", "Git"]
     },
     {
@@ -19,7 +19,7 @@
       "startDate": "2024-03-01",
       "endDate": "2024-09-31",
       "location": "Valencia, España",
-      "description": "Generación de embeddings para lenguaje de signos. Análisis de vídeo con técnicas de visión por computadora. Análisis y visualización de datos.",
+      "description": "• Desarrollo del primer conjunto de datos y sistema de traducción de Lengua de Signos Española (LSE) a texto, recopilando y analizando un corpus pionero de más de 1.000 frases en vídeo mediante la implementación de arquitecturas de Visión Artificial para el seguimiento de gestos.",
       "technologies": ["Python", "TensorFlow", "Computer Vision", "Pythorch", "Slurm"]
     },
     {
@@ -30,7 +30,7 @@
       "startDate": "2022-09-01",
       "endDate": "2022-12-24",
       "location": "Pamplona, España",
-      "description": "Análisis de datos en entorno sanitario. Creación de modelos de clasificación y regresión. Análisis NLP. Recopilación y modelado de datos. Visualización de datos con Tableau.",
+      "description": "• Desarrollo de un modelo de clasificación de encuestas de satisfacción basado en Inteligencia Artificial (Transformers), alcanzando una precisión superior al 90%. \n• Mejora del 40% en la eficiencia de las listas de espera hospitalarias mediante la implementación de un sistema de análisis de procesos (process mining) que optimizó el flujo de pacientes y eliminó cuellos de botella operativos.  \n• Diseño de un sistema automatizado de integración y procesamiento de datos (ETL) desde bases de datos hospitalarias para la visualización y análisis de indicadores clave en Tableau.",
       "technologies": ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"]
     },
     {
@@ -41,7 +41,7 @@
       "startDate": "2026-01-01",
       "endDate": null,
       "location": "Remoto",
-      "description": "Recopilación y anotación de datos para analítica deportiva. Comunicación en inglés con equipos internacionales.",
+      "description": "• Recopilación y anotación de datos para analítica deportiva. \n• Comunicación en inglés con equipos internacionales.",
       "technologies": ["Data Collection", "Annotation", "English"]
     }
   ],
@@ -54,7 +54,7 @@
       "startDate": "2024-10-31",
       "endDate": null,
       "location": "Valencia, Spain",
-      "description": "End-to-end RAG system development from scratch deploying local LLMs and vector databases. Deployment and orchestration of local LLMs via vLLM. Experience with embedding models and re-ranking pipelines. Backend development for AI applications. Production-grade AI system deployment. Distributed systems and infrastructure management (university-scale compute environments). Workflow automation using Apache Airflow and Temporal. Docker and Git for version control and containerization. Fine-tuning of large language models (LLMs). Experience with MLOps practices and lifecycle management.",
+      "description": "• Architected and deployed an end-to-end institutional RAG platform from scratch, achieving 100% on-premise data privacy compliance across the university (40.000+ users), by serving local LLMs via vLLM, managing vector indexing in Milvus, and building scalable document ingestion with Docling.\n• Automated various workflows with Apache Airflow, reducing incident resolution time by 40% through incident categorization.\n• Switched the university’s LLM, embedding model and re-ranking model, which improved answer quality by 30% according to internal evaluation and twice as many tokens per second using open-source LLMs deployed by vLLM.\n• Boosted LLM domain accuracy from 64.9% to 86.5% on internal university benchmarks, by fine-tuning university LLM with organizational data.\n• Architected an end-to-end semantic video recommendation platform for university subjects, indexing 1000+ hours of academic video across 4000+ subjects, by engineering SQL-based ETL extraction, automated audio transcription pipelines, vector database embeddings, and a responsive web application built with Astro.\n• Restructured on-premise AI model provisioning and deployment, boosting overall system throughput by 400%, by isolating and assigning dedicated compute resources for compute-heavy workloads (LLMs on H100) and auxiliary tasks (OCR and embeddings on A30).",
       "technologies": ["Python", "LangChain", "vLLM", "PostgreSQL", "Milvus", "Docker", "Apache Airflow", "Git"]
     },
     {
@@ -65,7 +65,7 @@
       "startDate": "2024-03-01",
       "endDate": "2024-09-31",
       "location": "Valencia, Spain",
-      "description": "Generation of embeddings for sign language. Video analysis with computer vision techniques. Data analysis and visualization.",
+      "description": "• Built the first annotated Spanish Sign Language (LSE) video dataset and sign-to-text translation pipeline, curating and analyzing a novel corpus of 1000+ video phrases, by implementing Computer Vision architectures for gesture tracking.",
       "technologies": ["Python", "TensorFlow", "Computer Vision", "Pythorch", "Slurm"]
     },
     {
@@ -76,7 +76,7 @@
       "startDate": "2022-09-01",
       "endDate": "2022-12-24",
       "location": "Pamplona, Spain",
-      "description": "Data analysis in a healthcare environment. Creation of classification and regression models. NLP analysis. Data collection and modeling. Data visualization with Tableau.",
+      "description": "• Built a classification model for satisfaction surveys using Transformers, achieving over 90% accuracy. \n• Archieved a 40% improvement in hospital waiting list efficiency by implementing a process mining pipeline to analyze patient flow and identify bottlenecks in hospital processes. \n• Built a pipeline to extract, transform and load (ETL) data from hospital databases to make data visualization on Tableau.",
       "technologies": ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"]
     },
     {
@@ -87,7 +87,7 @@
       "startDate": "2026-01-01",
       "endDate": null,
       "location": "Remote",
-      "description": "Data collection and annotation for sports analytics. English language skills for communication with international teams.",
+      "description": "• Data collection and annotation for sports analytics. \n• English language skills for communication with international teams.",
       "technologies": ["Data Collection", "Annotation", "English"]
     }
   ]
