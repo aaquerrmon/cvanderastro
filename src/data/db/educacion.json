@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Grado en Ciencia de Datos (B.Sc. in Data Science)",
+    "institucion": "Universidad Pública de Navarra (UPNA)",
+    "fecha_inicio": "2019-09-01",
+    "fecha_fin": "2023-06-30",
+    "detalles": "Formación especializada en estadística, aprendizaje automático, ingeniería de datos, optimización y análisis de series temporales.",
+    "perfil_id": 1
+  },
+  {
+    "id": 2,
+    "titulo": "Máster en Inteligencia Artificial (M.Sc. in Artificial Intelligence)",
+    "institucion": "Universidad Politécnica de Valencia (UPV)",
+    "fecha_inicio": "2023-09-01",
+    "fecha_fin": "2024-06-30",
+    "detalles": "Especialización en arquitecturas RAG, aprendizaje profundo, visión artificial y procesamiento de lenguaje natural.",
+    "perfil_id": 1
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "nombre": "Python",
+    "categoria": "Backend & Data Science",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 2,
+    "nombre": "FastAPI",
+    "categoria": "Backend",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 3,
+    "nombre": "SQL",
+    "categoria": "Bases de Datos",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Javascript",
+    "categoria": "Frontend",
+    "nivel": "Intermedio",
+    "perfil_id": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Java",
+    "categoria": "Backend",
+    "nivel": "Basico",
+    "perfil_id": 1
+  },
+  {
+    "id": 6,
+    "nombre": "vLLM",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 7,
+    "nombre": "Ollama",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 8,
+    "nombre": "Arquitecturas RAG",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 9,
+    "nombre": "MCP (Model Context Protocol)",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 10,
+    "nombre": "Docling",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 11,
+    "nombre": "Ragas",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Intermedio",
+    "perfil_id": 1
+  },
+  {
+    "id": 12,
+    "nombre": "LightGBM / Scikit-Learn",
+    "categoria": "Machine Learning / IA",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 13,
+    "nombre": "Oracle",
+    "categoria": "Bases de Datos",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 14,
+    "nombre": "PostgreSQL & pgvector",
+    "categoria": "Bases de Datos",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 15,
+    "nombre": "Milvus",
+    "categoria": "Bases de Datos",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 16,
+    "nombre": "Docker & Docker Compose",
+    "categoria": "DevOps",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 17,
+    "nombre": "Linux (CachyOS, Ubuntu, Fedora)",
+    "categoria": "Sistemas",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 18,
+    "nombre": "Nginx",
+    "categoria": "DevOps",
+    "nivel": "Intermedio",
+    "perfil_id": 1
+  },
+  {
+    "id": 19,
+    "nombre": "uv",
+    "categoria": "Herramientas Python",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 20,
+    "nombre": "Git & GitHub",
+    "categoria": "Control de Versiones",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  },
+  {
+    "id": 21,
+    "nombre": "Astro",
+    "categoria": "Frontend",
+    "nivel": "Intermedio",
+    "perfil_id": 1
+  },
+  {
+    "id": 22,
+    "nombre": "Tailwind CSS & DaisyUI",
+    "categoria": "Frontend",
+    "nivel": "Intermedio",
+    "perfil_id": 1
+  },
+  {
+    "id": 23,
+    "nombre": "Streamlit & Plotly",
+    "categoria": "Data Visualization",
+    "nivel": "Avanzado",
+    "perfil_id": 1
+  }
+]

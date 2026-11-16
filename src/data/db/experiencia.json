@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "empresa": "Universidad Politécnica de Valencia (UPV)",
+    "rol": "AI Engineer",
+    "tipo_contrato": "Tiempo completo",
+    "fecha_inicio": "2024-10-31",
+    "fecha_fin": null,
+    "descripcion": "Desarrollo y despliegue de infraestructura y servicios de Inteligencia Artificial para la universidad. Creación de sistemas multi-agente y RAG (PoliAgentes) y sistemas de recomendación y búsqueda semántica para MediaUPV (PoliRecommender / BuscadorIA).",
+    "perfil_id": 1
+  },
+  {
+    "id": 2,
+    "empresa": "Universidad Politécnica de Valencia (UPV)",
+    "rol": "AI Engineer",
+    "tipo_contrato": "Prácticas",
+    "fecha_inicio": "2024-03-01",
+    "fecha_fin": "2024-09-30",
+    "descripcion": "Traducción de lenguaje de signos a texto mediante modelos de visión artificial.",
+    "perfil_id": 1
+  },
+  {
+    "id": 3,
+    "empresa": "Hospital Universitario de Navarra (HUN)",
+    "rol": "Data Scientist",
+    "tipo_contrato": "Prácticas",
+    "fecha_inicio": "2022-09-01",
+    "fecha_fin": "2022-12-31",
+    "descripcion": "Análisis de datos médicos y desarrollo de modelos de minería de procesos para optimizar la gestión hospitalaria.",
+    "perfil_id": 1
+  },
+  {
+    "id": 4,
+    "empresa": "Stats Perform",
+    "rol": "Data Collector",
+    "tipo_contrato": "Tiempo parcial",
+    "fecha_inicio": "2026-01-01",
+    "fecha_fin": null,
+    "descripcion": "Recolección de datos en partidos de fútbol profesional",
+    "perfil_id": 1
+  }
+]

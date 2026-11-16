@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "titulo": "PoliAgentes",
+    "descripcion_completa": "Plataforma universitaria de gestión multi-agente y recuperación de conocimiento basada en arquitecturas RAG para consulta de normativa y documentación interna.",
+    "tipo": "Investigación UPV",
+    "url_publica": null,
+    "destacado": true,
+    "perfil_id": 1
+  },
+  {
+    "id": 2,
+    "titulo": "PoliEscaner",
+    "descripcion_completa": "Servicio de extracción automática de texto y estructuración documental combinando motores de OCR (Docling, RapidOCR, DeepSeekOCR) acelerados por GPU.",
+    "tipo": "Investigación UPV",
+    "url_publica": null,
+    "destacado": true,
+    "perfil_id": 1
+  },
+  {
+    "id": 3,
+    "titulo": "PoliEmbeddings & BuscadorIA (MediaUPV)",
+    "descripcion_completa": "Infraestructura centralizada de generación de embeddings en GPU y buscador/recomendador semántico para el catálogo de vídeos académicos de MediaUPV.",
+    "tipo": "Investigación UPV",
+    "url_publica": null,
+    "destacado": true,
+    "perfil_id": 1
+  },
+  {
+    "id": 4,
+    "titulo": "Node2Agents",
+    "descripcion_completa": "Proyecto open-source para la creación, conexión y orquestación modular de agentes de IA.",
+    "tipo": "Open Source",
+    "url_publica": "https://github.com/aaquerrmon/Node2Agents",
+    "destacado": false,
+    "perfil_id": 1
+  },
+  {
+    "id": 5,
+    "titulo": "Portfolio Personal",
+    "descripcion_completa": "Web personal desarrollada con Astro, Tailwind CSS y desplegada en Cloudflare Pages, respaldada por PostgreSQL + pgvector para consultas semánticas sobre experiencia y proyectos.",
+    "tipo": "Proyecto Personal",
+    "url_publica": "https://anderaquerreta.com",
+    "destacado": true,
+    "perfil_id": 1
+  },
+  {
+    "id": 6,
+    "titulo": "Trabajo de fin de Grado (TFG)",
+    "descripcion_completa": "Mejora de la eficiencia de las listas de espera mediante minería de procesos y aprendizaje automático",
+    "tipo": "Trabajo de Fin de Grado",
+    "url_publica": "https://academica-e.unavarra.es/entities/publication/f29f3278-eccf-431d-9480-0b0ba4adfab1",
+    "destacado": true,
+    "perfil_id": 1
+  },
+  {
+    "id": 7,
+    "titulo": "Trabajo de fin de Máster (TFM)",
+    "descripcion_completa": "Sistema de traducción automática de lengua de signos a texto mediante visión artificial y aprendizaje profundo.",
+    "tipo": "Trabajo de Fin de Máster",
+    "url_publica": "https://riunet.upv.es/entities/person/35d70e0e-bb4d-491e-b5b9-d5cbeb0a1c38",
+    "destacado": true,
+    "perfil_id": 1
+  }
+]

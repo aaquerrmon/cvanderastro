@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "TFG",
+    "fuente": "pdf",
+    "proyecto_id": null,
+    "perfil_id": 1,
+    "metadata": {
+      "path": "TFG.pdf",
+      "sha256": "6314640c7bc9ad057a145b0165917d29817a6e9bbd387b68bac58e2427587662",
+      "tamano": 1535143,
+      "n_chunks": 68,
+      "extension": "pdf",
+      "ingested_at": "2026-11-16T15:19:26+00:00"
+    }
+  },
+  {
+    "id": 2,
+    "titulo": "TFM",
+    "fuente": "pdf",
+    "proyecto_id": null,
+    "perfil_id": 1,
+    "metadata": {
+      "path": "TFM.pdf",
+      "sha256": "0a6d610098649037cf15589c2a84dc16c22c1d32d0518d98b670c05e6f449b9b",
+      "tamano": 4429743,
+      "n_chunks": 72,
+      "extension": "pdf",
+      "ingested_at": "2026-11-16T15:20:18+00:00"
+    }
+  }
+]

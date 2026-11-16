@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "nombre_completo": "Ander Aquerreta Montoro",
+    "titular": "Data Scientist & AI Engineer",
+    "biografia": "Ingeniero de IA y Científico de Datos especializado en el diseño y despliegue de arquitecturas RAG, orquestación de agentes y pipelines MLOps sobre infraestructura propia.",
+    "ubicacion": "Almansa, España",
+    "email": "anderaquerretamontoro@gmail.com",
+    "github_url": "https://github.com/aaquerrmon",
+    "linkedin_url": "https://linkedin.com/in/ander-aquerreta-montoro",
+    "web_personal": "https://anderaquerreta.com"
+  }
+]
