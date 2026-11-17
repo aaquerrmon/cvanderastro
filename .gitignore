@@ -3,11 +3,13 @@ dist/
 
 # generated types
 .astro/
+*.tsbuildinfo
 
 # dependencies
 node_modules/
 
 # logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -16,9 +18,24 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+
+# wrangler / cloudflare (estado local de miniflare, cache, logs)
+.wrangler/
+
+# test
+coverage/
+
+# python (scripts/)
+__pycache__/
+*.py[cod]
+.venv/
 
 # macOS-specific files
 .DS_Store
+
+metadata.sqlite*
 
 # jetbrains setting folder
 .idea/

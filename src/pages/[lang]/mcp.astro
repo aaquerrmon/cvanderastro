@@ -1,0 +1,295 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { type Language } from '../../i18n/config';
+
+const lang: Language = Astro.params.lang === 'en' ? 'en' : 'es';
+---
+
+<MainLayout lang={lang} title="MCP Console — Ander Aquerreta">
+  <section class="max-w-4xl mx-auto px-4 py-16 space-y-8">
+    <header class="text-center">
+      <p class="font-mono text-sm text-cyan-400 mb-2">// mcp_in_memory.ts</p>
+      <h1 class="text-4xl font-bold gradient-text mb-2">MCP Console</h1>
+      <p class="text-slate-400 text-sm font-mono">
+        Servidor MCP en memoria · tools sobre JSON · sin Postgres ni endpoints
+      </p>
+    </header>
+
+    <!-- Conexión -->
+    <div class="glass-card p-6">
+      <h2 class="text-lg font-semibold text-slate-200 mb-3">Conexión</h2>
+      <p id="mcp-status" class="text-sm font-mono text-amber-400 mb-3">Conectando…</p>
+      <ul id="mcp-tools" class="space-y-2 text-sm font-mono"></ul>
+    </div>
+
+    <!-- API key -->
+    <div class="glass-card p-6">
+      <h2 class="text-lg font-semibold text-slate-200 mb-1">API key</h2>
+      <p class="text-xs text-slate-500 mb-4 font-mono">
+        las tools exigen autorización · solo el SHA-256 de la key viaja en el bundle
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input id="auth-key" type="password" placeholder="••••••••" autocomplete="off"
+          class="flex-1 bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        <button id="auth-run" class="btn-primary text-sm">Autorizar</button>
+      </div>
+      <p id="auth-status" class="mt-3 text-sm font-mono text-amber-400">Comprobando…</p>
+    </div>
+
+    <!-- db_query -->
+    <div class="glass-card p-6">
+      <h2 class="text-lg font-semibold text-slate-200 mb-1">db_query</h2>
+      <p class="text-xs text-slate-500 mb-4 font-mono">
+        filtros: <code class="text-cyan-400">clave=valor</code> separados por coma ·
+        <code class="text-cyan-400">[1,2]</code> = IN · <code class="text-cyan-400">null</code> = IS NULL
+        · valores numéricos/booleanos detectados solos
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+        <label class="text-xs text-slate-400">
+          tabla
+          <select id="db-table" class="mt-1 w-full bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200">
+            <option>perfil</option>
+            <option>experiencia</option>
+            <option>proyectos</option>
+            <option>tecnologias</option>
+            <option>idiomas</option>
+            <option>educacion</option>
+            <option>documentos_rag</option>
+            <option>chunks_rag</option>
+          </select>
+        </label>
+        <label class="text-xs text-slate-400">
+          filtros
+          <input id="db-filtros" type="text" placeholder="nivel=Avanzado, perfil_id=1"
+            class="mt-1 w-full bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        </label>
+        <label class="text-xs text-slate-400">
+          orden (columna)
+          <input id="db-orden" type="text" placeholder="nombre"
+            class="mt-1 w-full bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        </label>
+        <label class="text-xs text-slate-400">
+          límite
+          <input id="db-limite" type="number" value="100" min="1" max="500"
+            class="mt-1 w-full bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        </label>
+      </div>
+      <label class="flex items-center gap-2 text-xs text-slate-400 mb-4">
+        <input id="db-desc" type="checkbox" class="accent-cyan-500" />
+        orden descendente
+      </label>
+      <button id="db-run" class="btn-primary text-sm">Ejecutar consulta</button>
+      <pre id="db-output"
+        class="mt-4 bg-slate-950/60 border border-slate-800 rounded p-4 text-xs font-mono text-slate-300 overflow-x-auto max-h-80 whitespace-pre-wrap">// salida</pre>
+    </div>
+
+    <!-- rag_search -->
+    <div class="glass-card p-6">
+      <h2 class="text-lg font-semibold text-slate-200 mb-1">rag_search</h2>
+      <p class="text-xs text-slate-500 mb-4 font-mono">
+        embedding e5-small en el navegador (ONNX/WASM) + coseno sobre los chunks del TFG/TFM
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 mb-3">
+        <input id="rag-question" type="text" placeholder="¿Sobre qué trata el TFG?"
+          class="flex-1 bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        <input id="rag-topk" type="number" value="5" min="1" max="20" title="top_k"
+          class="w-20 bg-slate-950/60 border border-slate-700 rounded px-3 py-2 text-sm font-mono text-slate-200" />
+        <button id="rag-run" class="btn-primary text-sm">Buscar</button>
+      </div>
+      <p id="rag-status" class="text-sm font-mono text-slate-500"></p>
+      <ul id="rag-results" class="mt-3 space-y-3"></ul>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  import type { Client } from '@modelcontextprotocol/sdk/client/index.js';
+
+  let clientPromise: Promise<Client> | null = null;
+  let mcpPromise: Promise<typeof import('../../mcp')> | null = null;
+
+  const loadMcp = () => (mcpPromise ??= import('../../mcp'));
+  // Import dinámico: el chunk de 1,7 MB (JSON + SDK) no entra en el bundle inicial
+  const getClient = () =>
+    (clientPromise ??= loadMcp().then(async ({ createMcpClient }) => createMcpClient()));
+
+  async function callTool(name: string, args: Record<string, unknown>): Promise<any> {
+    const client = await getClient();
+    const result = await client.callTool({ name, arguments: args });
+    const content = result.content as Array<{ type: string; text?: string }>;
+    return JSON.parse(content[0].text ?? '{}');
+  }
+
+  function parseFiltros(raw: string): Record<string, unknown> | undefined {
+    const out: Record<string, unknown> = {};
+    for (const pair of raw.split(',').map((s) => s.trim()).filter(Boolean)) {
+      const eq = pair.indexOf('=');
+      if (eq < 1) continue;
+      const value = pair.slice(eq + 1).trim();
+      try {
+        out[pair.slice(0, eq).trim()] = JSON.parse(value);
+      } catch {
+        out[pair.slice(0, eq).trim()] = value;
+      }
+    }
+    return Object.keys(out).length > 0 ? out : undefined;
+  }
+
+  const byId = (id: string) => document.getElementById(id)!;
+  const val = (id: string) => (byId(id) as HTMLInputElement | HTMLSelectElement).value;
+
+  // --- API key ---
+  const authStatus = byId('auth-status');
+
+  function setAuthState(state: 'pending' | 'ok' | 'bad') {
+    if (state === 'pending') {
+      authStatus.textContent = 'API key requerida para ejecutar las tools';
+      authStatus.className = 'mt-3 text-sm font-mono text-amber-400';
+    } else if (state === 'ok') {
+      authStatus.textContent = '● autorizado — tools habilitadas';
+      authStatus.className = 'mt-3 text-sm font-mono text-emerald-400';
+    } else {
+      authStatus.textContent = '● API key inválida';
+      authStatus.className = 'mt-3 text-sm font-mono text-red-400';
+    }
+  }
+
+  async function authorizeKey(key: string): Promise<boolean> {
+    const { authorize } = await loadMcp();
+    return authorize(key);
+  }
+
+  async function initAuth() {
+    const saved = sessionStorage.getItem('mcp_api_key');
+    if (saved && (await authorizeKey(saved))) {
+      setAuthState('ok');
+      return;
+    }
+    if (saved) sessionStorage.removeItem('mcp_api_key');
+    setAuthState('pending');
+  }
+
+  byId('auth-run').addEventListener('click', async () => {
+    const input = byId('auth-key') as HTMLInputElement;
+    if (!input.value) return;
+    try {
+      if (await authorizeKey(input.value)) {
+        sessionStorage.setItem('mcp_api_key', input.value);
+        input.value = '';
+        setAuthState('ok');
+      } else {
+        setAuthState('bad');
+      }
+    } catch (error) {
+      setAuthState('bad');
+      authStatus.textContent = `● error: ${String(error)}`;
+    }
+  });
+
+  (byId('auth-key') as HTMLInputElement).addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') byId('auth-run').click();
+  });
+
+  // --- Conexión + tools ---
+  async function init() {
+    const status = byId('mcp-status');
+    const toolsList = byId('mcp-tools');
+    try {
+      const client = await getClient();
+      const { tools } = await client.listTools();
+      status.textContent = '● conectado (transporte en memoria)';
+      status.className = 'text-sm font-mono text-emerald-400 mb-3';
+      for (const tool of tools) {
+        const li = document.createElement('li');
+        const name = document.createElement('span');
+        name.className = 'text-cyan-400';
+        name.textContent = tool.name;
+        const desc = document.createElement('span');
+        desc.className = 'text-slate-500';
+        desc.textContent = ` — ${tool.description}`;
+        li.append(name, desc);
+        toolsList.appendChild(li);
+      }
+    } catch (error) {
+      status.textContent = `● error: ${String(error)}`;
+      status.className = 'text-sm font-mono text-red-400 mb-3';
+    }
+  }
+
+  // --- db_query ---
+  byId('db-run').addEventListener('click', async () => {
+    const output = byId('db-output');
+    output.textContent = 'Ejecutando…';
+    try {
+      const args: Record<string, unknown> = { tabla: val('db-table') };
+      const filtros = parseFiltros(val('db-filtros'));
+      if (filtros) args.filtros = filtros;
+      const orden = val('db-orden').trim();
+      if (orden) args.orden = orden;
+      if ((byId('db-desc') as HTMLInputElement).checked) args.desc = true;
+      const limite = Number(val('db-limite'));
+      if (limite > 0) args.limite = limite;
+
+      const data = await callTool('db_query', args);
+      output.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+      output.textContent = String(error);
+    }
+  });
+
+  // --- rag_search ---
+  byId('rag-run').addEventListener('click', async () => {
+    const status = byId('rag-status');
+    const results = byId('rag-results');
+    const question = val('rag-question').trim();
+    if (!question) return;
+
+    results.innerHTML = '';
+    status.textContent = 'Generando embedding… (la primera vez descarga el modelo, ~135 MB)';
+    status.className = 'text-sm font-mono text-amber-400';
+    const start = performance.now();
+
+    try {
+      const topK = Number(val('rag-topk')) || 5;
+      const data = await callTool('rag_search', { question, top_k: topK });
+      const secs = ((performance.now() - start) / 1000).toFixed(1);
+
+      if (data.error) {
+        status.textContent = `error: ${data.error}`;
+        status.className = 'text-sm font-mono text-red-400';
+        return;
+      }
+
+      status.textContent = `● ${data.total_results} resultados en ${secs}s`;
+      status.className = 'text-sm font-mono text-emerald-400';
+
+      for (const r of data.results) {
+        const li = document.createElement('li');
+        li.className = 'bg-slate-950/60 border border-slate-800 rounded p-3';
+
+        const head = document.createElement('div');
+        head.className = 'font-mono text-xs mb-1';
+        const sim = document.createElement('span');
+        sim.className = 'text-emerald-400';
+        sim.textContent = `#${r.id} · sim ${Number(r.similarity).toFixed(3)}`;
+        const section = document.createElement('span');
+        section.className = 'text-slate-500';
+        section.textContent = r.metadata?.seccion ? ` · ${r.metadata.seccion}` : '';
+        head.append(sim, section);
+
+        const body = document.createElement('p');
+        body.className = 'text-sm text-slate-300';
+        body.textContent = r.content;
+
+        li.append(head, body);
+        results.appendChild(li);
+      }
+    } catch (error) {
+      status.textContent = String(error);
+      status.className = 'text-sm font-mono text-red-400';
+    }
+  });
+
+  void init();
+  void initAuth();
+</script>
